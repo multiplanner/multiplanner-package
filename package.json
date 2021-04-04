@@ -1,0 +1,23 @@
+{
+  "name": "multiplanner",
+  "version": "1.0.0",
+  "description": "Tool om polydestinale reizen te plannen over het Nederlandse spoornet.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/multiplanner/multiplanner-package.git"
+  },
+  "keywords": [
+    "Reis Planner",
+    "NS"
+  ],
+  "author": "arte921, BennovanDorst",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/multiplanner/multiplanner-package/issues"
+  },
+  "homepage": "https://github.com/multiplanner/multiplanner-package#readme"
+}
