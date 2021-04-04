@@ -1,7 +1,7 @@
 /*
  *	Made by arte921 and BennovanDorst
- *  https://github.com/Multiplanner/Multiplanner-npm
- *  Multiplanner-NPM Version 1.0.0
+ *  https://github.com/Multiplanner/Multiplanner-package
+ *  Multiplanner-package Version 1.0.0
  *
  *  License: MIT
  *
