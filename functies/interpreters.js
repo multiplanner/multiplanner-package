@@ -25,7 +25,7 @@ const extractLeg = (leg, index) => {
 const eerstAankomendeGeldigeRit = (trips, moment, volgritNummer) => {
     let besteTrip;
     for (const trip of trips) {
-        if (trip.status != "NORMAL" || (trip.legs[0].product.number != volgritNummer && new Date(moment.getTime() + 2 * 60000) > vertrekTijd(trip))) continue;
+        if (trip.status != "NORMAL" || (trip.legs[0].product.number != volgritNummer && moment > vertrekTijd(trip))) continue;
         if (!besteTrip) besteTrip = trip;
         if (aankomstTijd(trip) < aankomstTijd(besteTrip)) besteTrip = trip;
     }

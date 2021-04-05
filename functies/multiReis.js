@@ -14,6 +14,8 @@ module.exports = async (tijdstationlijst) => {
     const route = tijdstationlijst.split("\n").filter((regel) => !!regel).map((regel) => isNaN(regel) ? chrono.parseDate(regel) || zoekStation(regel.toLowerCase()).code : regel);
     let volgRitNummer;
     let volgendeDatum = new Date();
+    // geeft de tijd aan waar de rit begint.
+    // geeft ook aan of dit het eerste deel van de rit is, dus of er overstaptijd gerekend moet worden.
     let begintijd;
 
     let resultaat = [];
@@ -34,6 +36,7 @@ module.exports = async (tijdstationlijst) => {
             vorigStation = route[i - 2];
         } else if (isNaN(route[i - 1])) {
             vorigStation = route[i - 1];
+            if (begintijd) volgendeDatum = new Date(volgendeDatum.getTime() + 1000 * 60 * 2);
         } else {
             vorigStation = route[i - 2];
             volgendeDatum = new Date(volgendeDatum.getTime() + 1000 * 60 * route[i - 1]);
