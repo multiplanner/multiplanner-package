@@ -1,6 +1,6 @@
 {
   "name": "multiplanner",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Tool om polydestinale reizen te plannen over het Nederlandse spoornet.",
   "main": "index.js",
   "scripts": {
@@ -19,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/multiplanner/multiplanner-package/issues"
   },
-  "homepage": "https://github.com/multiplanner/multiplanner-package#readme"
+  "homepage": "https://github.com/multiplanner/multiplanner-package#readme",
+  "dependencies": {
+    "chrono-node": "2.2.6",
+    "delay": "^5.0.0",
+    "string-similarity": "^4.0.4"
+  }
 }
