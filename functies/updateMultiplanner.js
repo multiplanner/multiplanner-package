@@ -2,8 +2,8 @@ const writeJSON = require("./writeJSON.js");
 const haalDataOp = require('./haalDataOp.js');
 
 module.exports = async (nsapi) => {
-    const spoorkaart = await haalDataOp('/Spoorkaart-API/api/v1/spoorkaart/');
-    const stations = await haalDataOp('/reisinformatie-api/api/v2/stations');
+    const spoorkaart = await haalDataOp('/Spoorkaart-API/api/v1/spoorkaart/', nsapi);
+    const stations = await haalDataOp('/reisinformatie-api/api/v2/stations', nsapi);
     const config = {
         ns_app_key_primary: nsapi
     };
