@@ -8,12 +8,13 @@
  *  Main index file
  */
 
-//Functions
-function hello() {
-    console.log('hello world')
-}
+const multiReis = require('./functies/multiReis.js');
+const formatteerReis = require('./functies/formatteerReis.js');
+const updateMultiplanner = require('./functies/updateMultiplanner.js');
 
 //Export all of the modules
 module.exports = {
-    hello
-}
+    multiReis,
+    formatteerReis,
+    updateMultiplanner
+};
