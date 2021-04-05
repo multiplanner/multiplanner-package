@@ -10,7 +10,7 @@ module.exports = async (van, naar, moment, volgRit) => {
     const eersVolgendeRit = eerstAankomendeGeldigeRit(reis.trips, moment, volgRit);
     if (!eersVolgendeRit) stop(van, naar);
     const trip = await haalTripOp(eersVolgendeRit.ctxRecon);
-    if (!trip) stop(van, naar);
+    if (!trip.legs) stop(van, naar);
     return trip;    
 };
 
