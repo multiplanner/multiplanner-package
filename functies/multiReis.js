@@ -24,7 +24,7 @@ module.exports = async (tijdstationlijst) => {
 
     let treintijd = 0;
     let stationstijd = 0;
-    
+
     for (let i = 0; i < route.length; i++) {
         if (!isNaN(route[i]) || route[i] instanceof Date) continue;
         // huidige index wijst naar een stationscode
@@ -34,21 +34,23 @@ module.exports = async (tijdstationlijst) => {
         if (route[i - 1] instanceof Date) {
             volgendeDatum = route[i - 1];
             vorigStation = route[i - 2];
+            volgRitNummer = null;
         } else if (isNaN(route[i - 1])) {
             vorigStation = route[i - 1];
             if (begintijd) volgendeDatum = new Date(volgendeDatum.getTime() + 1000 * 60 * 2);
         } else {
             vorigStation = route[i - 2];
             volgendeDatum = new Date(volgendeDatum.getTime() + 1000 * 60 * route[i - 1]);
+            volgRitNummer = null;
         }
-        
+
         if (!vorigStation) continue;
 
         begintijd = begintijd || volgendeDatum;
 
         const trip = await vroegsteVolledigeReis(vorigStation, huidigStation, volgendeDatum, volgRitNummer);
         urls.push(trip.shareUrl.uri);
-        
+
         const rit = trip.legs.map(extractLeg);
         totalePrijsCent += trip.productFare.priceInCentsExcludingSupplement; //priceInCents;
 
