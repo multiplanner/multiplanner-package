@@ -10,8 +10,21 @@ const {
     extractLeg
 } = require('./interpreters.js');
 
-module.exports = async (tijdstationlijst) => {
-    const route = tijdstationlijst.split("\n").filter((regel) => !!regel).map((regel) => isNaN(regel) ? chrono.parseDate(regel) || zoekStation(regel.toLowerCase()).code : regel);
+const sleutelwoorden = {
+    ontmoet: 'ontmoet',
+    stel: 'stel'
+}
+
+const filterSleutelwoorden = (regels, sleutelwoord) => regels
+    .map((regel) => {
+        const woorden = regel.split(' ');
+        if (woorden.shift() == sleutelwoord) {
+            return woorden.join(' ');
+        }
+    })
+    .filter((afhankelijkheid) => afhankelijkheid);
+
+const berekenReis = async (route) => {
     let volgRitNummer;
     let volgendeDatum = new Date();
     // geeft de tijd aan waar de rit begint.
@@ -84,4 +97,32 @@ module.exports = async (tijdstationlijst) => {
         treintijd: treintijd,
         stationstijd: stationstijd
     };
+}
+
+module.exports = async (tijdstationlijst) => {
+    const reizen = tijdstationlijst
+        .split(/^reis /m)
+        .filter((regel) => !!regel)
+        .map((reis) => reis
+            .split("\n")
+            .filter((regel) => !!regel)
+        )
+        .map((reis) => ({
+            naam: reis.shift(),
+            afhankelijkheden: filterSleutelwoorden(reis, sleutelwoorden.ontmoet),
+            stellingen: filterSleutelwoorden(reis, sleutelwoorden.stel),
+            reis: reis
+        }));
+
+
+
+    console.log(reizen);
+    process.exit();
+
+    const route = tijdstationlijst
+        .split("\n")
+        .filter((regel) => !!regel)
+        .map((regel) => isNaN(regel) ? chrono.parseDate(regel) || zoekStation(regel.toLowerCase()).code : (regel));
+
+
 };
