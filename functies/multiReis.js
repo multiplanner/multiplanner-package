@@ -5,6 +5,7 @@ const polylineAfstand = require('./polylineAfstand.js');
 const stationsLijstPolyline = require('./stationsLijstPolyline.js');
 const coordinaatAfstand = require('./coordinaatAfstand.js');
 const zoekStation = require('./zoekStation.js');
+const writeJSON = require('./writeJSON.js');
 const {
     aankomstTijd,
     extractLeg
@@ -12,17 +13,18 @@ const {
 
 const sleutelwoorden = {
     ontmoet: 'ontmoet',
-    stel: 'stel'
-}
+    stel: 'stel',
+    vertrek: 'vertrek',
+    aankomst: 'aankomst',
+    wacht: 'wacht'
+};
 
-const filterSleutelwoorden = (regels, sleutelwoord) => regels
-    .map((regel) => {
-        const woorden = regel.split(' ');
-        if (woorden.shift() == sleutelwoord) {
-            return woorden.join(' ');
-        }
-    })
-    .filter((afhankelijkheid) => afhankelijkheid);
+const filterSleutelwoorden = (regel, sleutelwoord) => {
+    const woorden = regel.split(' ');
+    if (woorden.shift() == sleutelwoord) {
+        return woorden.join(' ');
+    }
+};
 
 const berekenReis = async (route) => {
     let volgRitNummer;
@@ -109,14 +111,24 @@ module.exports = async (tijdstationlijst) => {
         )
         .map((reis) => ({
             naam: reis.shift(),
-            afhankelijkheden: filterSleutelwoorden(reis, sleutelwoorden.ontmoet),
-            stellingen: filterSleutelwoorden(reis, sleutelwoorden.stel),
             reis: reis
+                .join("\n")
+                .split(new RegExp(`^(?=${sleutelwoorden.vertrek}|${sleutelwoorden.aankomst}|${sleutelwoorden.wacht}|${sleutelwoorden.ontmoet})`, 'gm'))
+                .map((reisdeel) => reisdeel
+                    .split("\n")
+                    .filter((regel) => !!regel)
+                    .map((reisdeel) => ({
+                        afhankelijkheden: filterSleutelwoorden(reisdeel, sleutelwoorden.ontmoet),
+                        stellingen: filterSleutelwoorden(reisdeel, sleutelwoorden.stel),
+                        splitdelen: reisdeel.split(" ")
+                    }))
+                )
+                .filter((reisdeel) => reisdeel.length > 0)
         }));
 
 
 
-    console.log(reizen);
+    await writeJSON(reizen, 'reizen');
     process.exit();
 
     const route = tijdstationlijst
