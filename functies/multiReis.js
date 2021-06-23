@@ -101,6 +101,8 @@ const berekenReis = async (route) => {
     };
 }
 
+const alleSleutelwoorden = Object.values(sleutelwoorden);
+
 module.exports = async (tijdstationlijst) => {
     const reizen = tijdstationlijst
         .split(/^reis /m)
@@ -113,17 +115,24 @@ module.exports = async (tijdstationlijst) => {
             naam: reis.shift(),
             reis: reis
                 .join("\n")
-                .split(new RegExp(`^(?=${sleutelwoorden.vertrek}|${sleutelwoorden.aankomst}|${sleutelwoorden.wacht}|${sleutelwoorden.ontmoet})`, 'gm'))
+                .split(new RegExp(`^(?=${alleSleutelwoorden.join('|')})`, 'gm'))
                 .map((reisdeel) => reisdeel
                     .split("\n")
                     .filter((regel) => !!regel)
-                    .map((reisdeel) => ({
-                        afhankelijkheden: filterSleutelwoorden(reisdeel, sleutelwoorden.ontmoet),
-                        stellingen: filterSleutelwoorden(reisdeel, sleutelwoorden.stel),
-                        splitdelen: reisdeel.split(" ")
-                    }))
                 )
-                .filter((reisdeel) => reisdeel.length > 0)
+                .map((reisdeel) => {
+                    const gesplit = reisdeel.split(' ');
+                    return {
+                        commando: alleSleutelwoorden.includes(gesplit[0]),
+                        stations: reisdeel
+                    }
+                }
+                )
+                .map((reisdeel) => ({
+                    stations: reisdeel.stations,
+                    sleutelwoord: reisdeel.commando.shift(),
+                    argument: reisdeel.commando.join(" ")
+                }))
         }));
 
 
