@@ -101,43 +101,71 @@ const berekenReis = async (route) => {
     };
 }
 
+const bestaat = (element) => !!element;
+
+const losseregels = (tekst) => tekst
+    .split("\n")
+    .filter(bestaat);
+
+const argumentVan = (tekst, sleutelwoord) => [...tekst.matchAll(new RegExp(`(?<=^${sleutelwoord} ).+(?=$)`, 'gm'))].map((match) => match[0]);
+
 const alleSleutelwoorden = Object.values(sleutelwoorden);
 
 module.exports = async (tijdstationlijst) => {
     const reizen = tijdstationlijst
         .split(/^reis /m)
         .filter((regel) => !!regel)
-        .map((reis) => reis
-            .split("\n")
-            .filter((regel) => !!regel)
-        )
+        .map(losseregels)
         .map((reis) => ({
             naam: reis.shift(),
+            afhankelijkheden: argumentVan(reis.join("\n"), sleutelwoorden.ontmoet),
+            stellingen: argumentVan(reis.join("\n"), sleutelwoorden.stel),
             reis: reis
                 .join("\n")
                 .split(new RegExp(`^(?=${alleSleutelwoorden.join('|')})`, 'gm'))
-                .map((reisdeel) => reisdeel
-                    .split("\n")
-                    .filter((regel) => !!regel)
-                )
                 .map((reisdeel) => {
-                    const gesplit = reisdeel.split(' ');
-                    return {
-                        commando: alleSleutelwoorden.includes(gesplit[0]),
-                        stations: reisdeel
+                    const gesplit = losseregels(reisdeel)
+                        .map((regel) => regel.split(' '));
+                    if (gesplit.length == 0) return undefined;
+
+                    let commando;
+                    if (alleSleutelwoorden.includes(gesplit[0][0])) {
+                        commando = gesplit.shift();
+                    } else if (alleSleutelwoorden.includes(gesplit[gesplit.length - 1][0])) {
+                        commando = gesplit.pop();
+                    } else {
+                        commando = false;
                     }
-                }
-                )
-                .map((reisdeel) => ({
-                    stations: reisdeel.stations,
-                    sleutelwoord: reisdeel.commando.shift(),
-                    argument: reisdeel.commando.join(" ")
-                }))
+
+                    if (commando) {          
+                        return {
+                            commando: commando.shift(),
+                            argumenten: commando.join(' '),
+                            stations: false
+                        }
+                    } else {
+                        return {
+                            commando: false,
+                            argumenten: false,
+                            stations: losseregels(reisdeel)
+                        };
+                    }                    
+                })
+                .filter(bestaat)
         }));
 
+    const gesorteerdeReizen = [];
+
+    while (gesorteerdeReizen.length < reizen.length) {
+        reizen
+            .filter((reis) => !gesorteerdeReizen.includes(reis))
+            .filter((reis) => reis.afhankelijkheden.every((afhankelijkheid) => gesorteerdeReizen.some((bekendereis) => bekendereis.stellingen.includes(afhankelijkheid))))
+            .forEach((reis) => gesorteerdeReizen.push(reis))
+        
+    }
 
 
-    await writeJSON(reizen, 'reizen');
+    await writeJSON(gesorteerdeReizen, 'reizen');
     process.exit();
 
     const route = tijdstationlijst
