@@ -124,7 +124,7 @@ const regelCommando = (regel) => {
         argumenten: match[2],
         context: {}
     } : {
-        commando: sleutelwoorden.station,
+        commando: isNaN(regel) ? (chrono.parseDate(regel) ? sleutelwoorden.vertrek : sleutelwoorden.station) : sleutelwoorden.wacht,
         argumenten: regel,
         context: {}
     };
@@ -225,12 +225,12 @@ const parseReis = async (reisscript) => {
     const reis = losseregels(reisscript)
         .map(regelCommando);
 
-    let j = -100;
+    let j = 0;
     while (!reis.every(reisBekend)) {
         if (j++ > reis.length) {
-            await writeJSON(reis, 'reizen');
             throw "Ongeldig reisplan.";
         }
+        
         for (let i = 0; i < reis.length; i++) {
             const huidigCommando = reis[i];
             const vorigCommando = reis[i - 1];
