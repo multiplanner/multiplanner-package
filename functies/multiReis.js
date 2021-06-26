@@ -140,6 +140,7 @@ const parseReis = async (reisscript) => {
 
     let j = -100;
     while (!reis.every(reisBekend)) {
+        // console.log(reis);
         if (j++ > reis.length) {
             await writeJSON(reis, 'reizen');
             throw "Ongeldig reisplan.";
@@ -159,6 +160,15 @@ const parseReis = async (reisscript) => {
                 huidigCommando.context.eindtijd = huidigCommando.context.begintijd;
             }
 
+
+            if (volgendCommando && volgendCommando.context.begintijd && volgendCommando.context.station == huidigCommando.context.station) {
+                huidigCommando.context.eindtijd = volgendCommando.context.begintijd;
+            }
+
+            if (vorigCommando && vorigCommando.context.eindtijd && vorigCommando.context.station == huidigCommando.context.station) {
+                huidigCommando.context.begintijd = vorigCommando.context.eindtijd;
+            }
+
             switch (huidigCommando.commando) {
                 case sleutelwoorden.ontmoet:
 
@@ -173,14 +183,6 @@ const parseReis = async (reisscript) => {
                     huidigCommando.context.begintijd = chrono.parseDate(huidigCommando.argumenten);
                     break;
                 case sleutelwoorden.wacht:
-                    if (volgendCommando && volgendCommando.context.begintijd) {
-                        huidigCommando.context.eindtijd = volgendCommando.context.begintijd;
-                    }
-
-                    if (vorigCommando && vorigCommando.context.eindtijd) {
-                        huidigCommando.context.begintijd = vorigCommando.context.eindtijd;
-                    }
-
                     if (huidigCommando.argumenten == 'onbekend') {
                         if (volgendCommando && volgendCommando.context.begintijd) {
                             huidigCommando.context.eindtijd = volgendCommando.context.begintijd;
@@ -217,6 +219,7 @@ const parseReis = async (reisscript) => {
 
             if (vorigCommando) {                
                 if (
+                    !huidigCommando.context.begintijd &&
                     huidigCommando.context.station &&
                     vorigCommando.context.station &&
                     vorigCommando.context.station != huidigCommando.context.station &&
@@ -226,12 +229,11 @@ const parseReis = async (reisscript) => {
                     const bestemming = huidigCommando.context.station;
                     const vertrektijd = vorigCommando.context.eindtijd;
                     const reis = await vroegsteVolledigeReis(beginstation, bestemming, vertrektijd, undefined, false);
-                    console.log(reis);
                     nsAntwoorden.push({
                         index: i,
                         reis: reis
                     });
-                    const aankomsttijd = extractLeg(reis.legs[reis.legs.length - 1].aankomsttijd);
+                    const aankomsttijd = new Date(reis.legs[reis.legs.length - 1].destination.actualDateTime || reis.legs[reis.legs.length - 1].destination.plannedDateTime);
                     huidigCommando.context.begintijd = aankomsttijd;
                     huidigCommando.context.eindtijd = aankomsttijd;
                 }
@@ -243,6 +245,7 @@ const parseReis = async (reisscript) => {
 
             if (volgendCommando) {
                 if (
+                    !huidigCommando.context.eindtijd &&
                     huidigCommando.context.station &&
                     volgendCommando.context.station &&
                     volgendCommando.context.station != huidigCommando.context.station &&
@@ -252,12 +255,11 @@ const parseReis = async (reisscript) => {
                     const bestemming = volgendCommando.context.station;
                     const aankomsttijd = volgendCommando.context.begintijd;
                     const reis = await laatsteVolledigeReis(beginstation, bestemming, aankomsttijd, undefined);
-                    console.log(reis);
                     nsAntwoorden.push({
                         index: i,
                         reis: reis
                     });
-                    const vertrektijd = extractLeg(reis.legs[0]).vertrektijd;
+                    const vertrektijd = new Date(reis.legs[0].origin.actualDateTime || reis.legs[0].origin.plannedDateTime);
                     huidigCommando.context.begintijd = vertrektijd;
                     huidigCommando.context.eindtijd = vertrektijd;                    
                 }
@@ -268,9 +270,37 @@ const parseReis = async (reisscript) => {
             }
         }
     }
-    console.log(reis);
 
-    return reis;
+    trips = nsAntwoorden
+        .sort((a, b) => a.index - b.index)
+        .map((trip) => trip.trip);
+
+    const resultaat = [];
+    const urls = [];
+    let totalePrijsCent = 0;
+
+    for (trip in trips) {
+
+        urls.push(trip.shareUrl.uri);
+    
+        const rit = trip.legs.map(extractLeg);
+        totalePrijsCent += trip.productFare.priceInCentsExcludingSupplement; //priceInCents;
+    
+        resultaat.push(...rit);
+    }
+
+    return {
+        prijs: totalePrijsCent,
+        // reistijd: resultaat,
+        urls: urls,
+        reis: resultaat,
+        // gepasseerdestations: gepaseerdeStations,
+        // afstand: polylineAfstand(polyline),
+        // hemelsbredeafstand: coordinaatAfstand(polyline[0], polyline[polyline.length - 1]),
+        // polyline: polyline,
+        // treintijd: treintijd,
+        // stationstijd: stationstijd
+    };;
 }
 
 module.exports = async (tijdstationlijst) => {
