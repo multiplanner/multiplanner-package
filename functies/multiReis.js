@@ -229,7 +229,7 @@ const parseReis = async (reisscript) => {
 
     const reis = losseregels(reisscript)
         .map(regelCommando);
-        
+
     let j = 0;
     while (!reis.every(reisBekend)) {
         if (j++ > reis.length) {
@@ -257,7 +257,7 @@ const parseReis = async (reisscript) => {
 
                     break;
                 case sleutelwoorden.wacht:
-                    if (huidigCommando.argumenten == 'onbekend') {
+                    if (huidigCommando.argumenten == argumentwoorden.onbekend) {
                     } else {
                         if (huidigCommando.context.begintijd) {
                             huidigCommando.context.eindtijd = new Date(huidigCommando.context.begintijd.getTime() + (1000 * 60 * huidigCommando.argumenten));
