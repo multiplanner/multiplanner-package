@@ -11,6 +11,7 @@ const {
     extractLeg
 } = require('./interpreters.js');
 const haalDataOp = require('./haalDataOp.js');
+const laatsteVolledigeReis = require('./laatsteVolledigeReis.js');
 
 const sleutelwoorden = {
     ontmoet: 'ontmoet',
@@ -139,7 +140,10 @@ const parseReis = async (reisscript) => {
 
     let j = -100;
     while (!reis.every(reisBekend)) {
-        if (j++ > reis.length) throw "Ongeldig reisplan.";
+        if (j++ > reis.length) {
+            await writeJSON(reis, 'reizen');
+            throw "Ongeldig reisplan.";
+        }
         for (let i = 0; i < reis.length; i++) {
             const huidigCommando = reis[i];
             if (reisBekend(huidigCommando)) continue;
@@ -155,7 +159,6 @@ const parseReis = async (reisscript) => {
                 huidigCommando.context.eindtijd = huidigCommando.context.begintijd;
             }
 
-            const magPlannen = [sleutelwoorden.station].includes(huidigCommando.commando);
             switch (huidigCommando.commando) {
                 case sleutelwoorden.ontmoet:
 
@@ -199,14 +202,6 @@ const parseReis = async (reisscript) => {
                         huidigCommando.context.station = zoekStation(huidigCommando.argumenten).code.toUpperCase();
                     }
 
-                    if (volgendCommando && volgendCommando.context.begintijd) {
-                        huidigCommando.context.eindtijd = volgendCommando.context.begintijd;
-                    }
-
-                    if (vorigCommando && vorigCommando.context.eindtijd) {
-                        huidigCommando.context.begintijd = vorigCommando.context.eindtijd;
-                    }
-
                     if (huidigCommando.context.begintijd) {
                         huidigCommando.context.eindtijd = huidigCommando.context.begintijd;
                     }
@@ -220,37 +215,55 @@ const parseReis = async (reisscript) => {
                     break;
             }
 
-            if (vorigCommando) {
+            if (vorigCommando) {                
+                if (
+                    huidigCommando.context.station &&
+                    vorigCommando.context.station &&
+                    vorigCommando.context.station != huidigCommando.context.station &&
+                    vorigCommando.context.eindtijd
+                ) {
+                    const beginstation = vorigCommando.context.station;
+                    const bestemming = huidigCommando.context.station;
+                    const vertrektijd = vorigCommando.context.eindtijd;
+                    const reis = await vroegsteVolledigeReis(beginstation, bestemming, vertrektijd, undefined, false);
+                    console.log(reis);
+                    nsAntwoorden.push({
+                        index: i,
+                        reis: reis
+                    });
+                    const aankomsttijd = extractLeg(reis.legs[reis.legs.length - 1].aankomsttijd);
+                    huidigCommando.context.begintijd = aankomsttijd;
+                    huidigCommando.context.eindtijd = aankomsttijd;
+                }
 
                 if (!huidigCommando.context.station) {
                     huidigCommando.context.station = vorigCommando.context.station;
                 }
-
-                if (magPlannen && !huidigCommando.context.begintijd && vorigCommando.context.eindtijd) {
-                    if (huidigCommando.context.station && vorigCommando.context.station) {
-                        const beginstation = vorigCommando.context.station;
-                        const bestemming = huidigCommando.context.station;
-                        const vertrektijd = vorigCommando.context.eindtijd;
-                        const reis = await vroegsteVolledigeReis(beginstation, bestemming, vertrektijd, undefined, false);
-                        nsAntwoorden.push({
-                            index: i,
-                            reis: reis
-                        });
-                        huidigCommando.context.begintijd = extractLeg(reis.legs[reis.legs.length - 1].aankomsttijd);
-
-                    }
-                }
             }
 
             if (volgendCommando) {
-                if (!huidigCommando.context.station) {
-                    huidigCommando.context.station = volgendCommando.context.station;
+                if (
+                    huidigCommando.context.station &&
+                    volgendCommando.context.station &&
+                    volgendCommando.context.station != huidigCommando.context.station &&
+                    volgendCommando.context.begintijd
+                ) {
+                    const beginstation = huidigCommando.context.station;
+                    const bestemming = volgendCommando.context.station;
+                    const aankomsttijd = volgendCommando.context.begintijd;
+                    const reis = await laatsteVolledigeReis(beginstation, bestemming, aankomsttijd, undefined);
+                    console.log(reis);
+                    nsAntwoorden.push({
+                        index: i,
+                        reis: reis
+                    });
+                    const vertrektijd = extractLeg(reis.legs[0]).vertrektijd;
+                    huidigCommando.context.begintijd = vertrektijd;
+                    huidigCommando.context.eindtijd = vertrektijd;                    
                 }
 
-                if (!huidigCommando.context.eindtijd && volgendCommando.context.begintijd) {
-                    if (huidigCommando.context.station != vorigCommando.context.station) {
-                        huidigCommando.context.eindtijd = new Date(volgendCommando.context.begintijd.getTime() - 600000);
-                    }
+                if (!huidigCommando.context.station) {
+                    huidigCommando.context.station = volgendCommando.context.station;
                 }
             }
         }

@@ -31,8 +31,20 @@ const eerstAankomendeGeldigeRit = (trips, moment, volgritNummer) => {
     }
     return besteTrip;
 };
+
+const laatstAankomendeGeldigeRit = (trips, moment, volgritNummer) => {
+    let besteTrip;
+    for (const trip of trips) {
+        if (trip.status != "NORMAL" || (trip.legs[trip.legs.length - 1].product.number != volgritNummer && aankomstTijd(trip) > moment)) continue;
+        if (!besteTrip) besteTrip = trip;
+        if (vertrekTijd(trip) > vertrekTijd(besteTrip)) besteTrip = trip;
+    }
+    return besteTrip;
+};
+
 module.exports = {
     eerstAankomendeGeldigeRit,
+    laatstAankomendeGeldigeRit,
     aankomstTijd,
     extractLeg
 };
