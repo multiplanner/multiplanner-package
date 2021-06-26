@@ -16,7 +16,9 @@ const sleutelwoorden = {
     stel: 'stel',
     vertrek: 'vertrek',
     aankomst: 'aankomst',
-    wacht: 'wacht'
+    wacht: 'wacht',
+    station: 'station',
+    reis: 'reis'
 };
 
 const filterSleutelwoorden = (regel, sleutelwoord) => {
@@ -111,10 +113,130 @@ const argumentVan = (tekst, sleutelwoord) => [...tekst.matchAll(new RegExp(`(?<=
 
 const alleSleutelwoorden = Object.values(sleutelwoorden);
 
+const commandoRegex = alleSleutelwoorden.join('|');
+
+const regelCommando = (regel) => {
+    const match = regel.match(new RegExp(`(${commandoRegex}) (.*)`))
+    return match ? {
+        commando: match[1],
+        argumenten: match[2],
+        context: {}
+    } : {
+        commando: sleutelwoorden.station,
+        argumenten: regel,
+        context: {}
+    };
+};
+
+const reisBekend = (commando) => commando.context.aankomst && commando.context.vertrek && commando.context.station;
+
+const parseReis = async (reisscript) => {
+    const reis = losseregels(reisscript)
+        .map(regelCommando);
+
+    let j = 0;
+    while (!reis.every(reisBekend) && j < 100) {
+        // j++;
+
+        console.log(reis);
+        for (let i = 0; i < reis.length; i++) {
+            const huidigCommando = reis[i];
+            const vorigCommando = reis[i - 1];
+            const volgendCommando = reis[i - 1];
+
+            if (!vorigCommando) {
+                huidigCommando.context.begintijd = huidigCommando.context.eindtijd;
+            }
+
+            if (!volgendCommando) {
+                huidigCommando.context.eindtijd = huidigCommando.context.begintijd;
+            }
+
+            if (reisBekend(huidigCommando)) continue;
+
+            switch (huidigCommando.commando) {
+                case sleutelwoorden.ontmoet:
+
+                    break;
+                case sleutelwoorden.stel:
+
+                    break;
+                case sleutelwoorden.vertrek:
+                    huidigCommando.context.eindtijd = chrono.parseDate(huidigCommando.argumenten);
+                    break;
+                case sleutelwoorden.aankomst:
+                    huidigCommando.context.begintijd = chrono.parseDate(huidigCommando.argumenten);
+                    break;
+                case sleutelwoorden.wacht:
+                    if (huidigCommando.argumenten == 'onbekend') break;
+
+                    if (huidigCommando.context.begintijd) {
+                        huidigCommando.context.eindtijd = new Date(huidigCommando.context.begintijd.getTime() + (huidigCommando.argumenten * 60 * 1000));
+                    } else if (huidigCommando.context.eindtijd) {
+                        huidigCommando.context.begintijd = new Date(huidigCommando.context.eindtijd.getTime() - huidigCommando.argumenten * 60 * 1000);
+                    }
+
+                    break;
+                case sleutelwoorden.station:
+                    huidigCommando.context.station = huidigCommando.argumenten;
+                    if (volgendCommando && volgendCommando.context.begintijd) {
+                        huidigCommando.context.eindtijd = volgendCommando.context.begintijd;
+                    }
+                    
+                    if (vorigCommando && vorigCommando.context.eindtijd) {
+                        huidigCommando.context.begintijd = vorigCommando.context.eindtijd;
+                    }
+
+                    if (huidigCommando.context.begintijd) {
+                        huidigCommando.context.eindtijd = huidigCommando.context.begintijd;
+                    }
+
+                    if (huidigCommando.context.eindtijd) {
+                        huidigCommando.context.begintijd = huidigCommando.context.eindtijd;
+                    }
+
+                    break;
+                case sleutelwoorden.reis:
+                    break;
+            }
+
+            if (vorigCommando) {
+
+                if (!huidigCommando.context.station) {
+                    huidigCommando.context.station = vorigCommando.context.station;
+                }
+
+                if (!huidigCommando.context.begintijd && vorigCommando.context.eindtijd) {
+                    if (huidigCommando.context.station && vorigCommando.context.station) {
+                        huidigCommando.context.begintijd = new Date(vorigCommando.context.eindtijd.getTime() + 600000);
+                    }
+                }
+            }
+
+            if (volgendCommando) {
+                if (!huidigCommando.context.station) {
+                    huidigCommando.context.station = volgendCommando.context.station;
+                }
+
+                if (!huidigCommando.context.eindtijd && volgendCommando.context.begintijd) {
+                    if (huidigCommando.context.station && volgendCommando.context.station) {
+                        huidigCommando.context.eindtijd = new Date(volgendCommando.context.begintijd.getTime() - 600000);
+                    }
+                }
+            }
+        }
+    }
+
+    return reis;
+}
+
 module.exports = async (tijdstationlijst) => {
+    await writeJSON(await parseReis(tijdstationlijst), 'reizen');
+    process.exit();
+
     const reizen = tijdstationlijst
         .split(/^reis /m)
-        .filter((regel) => !!regel)
+        .filter(bestaat)
         .map(losseregels)
         .map((reis) => ({
             naam: reis.shift(),
@@ -122,7 +244,7 @@ module.exports = async (tijdstationlijst) => {
             stellingen: argumentVan(reis.join("\n"), sleutelwoorden.stel),
             reis: reis
                 .join("\n")
-                .split(new RegExp(`^(?=${alleSleutelwoorden.join('|')})`, 'gm'))
+                .split(new RegExp(`^(?=${commandoRegex})`, 'gm'))
                 .map((reisdeel) => {
                     const gesplit = losseregels(reisdeel)
                         .map((regel) => regel.split(' '));
@@ -137,7 +259,7 @@ module.exports = async (tijdstationlijst) => {
                         commando = false;
                     }
 
-                    if (commando) {          
+                    if (commando) {
                         return {
                             commando: commando.shift(),
                             argumenten: commando.join(' '),
@@ -149,7 +271,7 @@ module.exports = async (tijdstationlijst) => {
                             argumenten: false,
                             stations: losseregels(reisdeel)
                         };
-                    }                    
+                    }
                 })
                 .filter(bestaat)
         }));
@@ -160,13 +282,11 @@ module.exports = async (tijdstationlijst) => {
         reizen
             .filter((reis) => !gesorteerdeReizen.includes(reis))
             .filter((reis) => reis.afhankelijkheden.every((afhankelijkheid) => gesorteerdeReizen.some((bekendereis) => bekendereis.stellingen.includes(afhankelijkheid))))
-            .forEach((reis) => gesorteerdeReizen.push(reis))
-        
+            .forEach((reis) => gesorteerdeReizen.push(reis));
+
     }
 
 
-    await writeJSON(gesorteerdeReizen, 'reizen');
-    process.exit();
 
     const route = tijdstationlijst
         .split("\n")
