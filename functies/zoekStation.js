@@ -3,4 +3,4 @@ const stations = [].concat(...readJSONSync("stations").map((station) => station.
 const stringSimilarity = require("string-similarity");
 const vindStation = require('./vindStation.js');
 
-module.exports = (stationsNaam) =>  vindStation(stringSimilarity.findBestMatch(stationsNaam, stations).bestMatch.target);
+module.exports = (stationsNaam) => vindStation(stringSimilarity.findBestMatch(stationsNaam, stations).bestMatch.target);

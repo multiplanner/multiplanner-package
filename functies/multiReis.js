@@ -10,6 +10,7 @@ const {
     aankomstTijd,
     extractLeg
 } = require('./interpreters.js');
+const haalDataOp = require('./haalDataOp.js');
 
 const sleutelwoorden = {
     ontmoet: 'ontmoet',
@@ -128,21 +129,23 @@ const regelCommando = (regel) => {
     };
 };
 
-const reisBekend = (commando) => commando.context.aankomst && commando.context.vertrek && commando.context.station;
+const reisBekend = (commando) => commando.context.eindtijd && commando.context.begintijd && commando.context.station;
 
 const parseReis = async (reisscript) => {
+    const nsAntwoorden = [];
+
     const reis = losseregels(reisscript)
         .map(regelCommando);
 
-    let j = 0;
-    while (!reis.every(reisBekend) && j < 100) {
-        // j++;
-
-        console.log(reis);
+    let j = -100;
+    while (!reis.every(reisBekend)) {
+        if (j++ > reis.length) throw "Ongeldig reisplan.";
         for (let i = 0; i < reis.length; i++) {
             const huidigCommando = reis[i];
+            if (reisBekend(huidigCommando)) continue;
+
             const vorigCommando = reis[i - 1];
-            const volgendCommando = reis[i - 1];
+            const volgendCommando = reis[i + 1];
 
             if (!vorigCommando) {
                 huidigCommando.context.begintijd = huidigCommando.context.eindtijd;
@@ -152,8 +155,7 @@ const parseReis = async (reisscript) => {
                 huidigCommando.context.eindtijd = huidigCommando.context.begintijd;
             }
 
-            if (reisBekend(huidigCommando)) continue;
-
+            const magPlannen = [sleutelwoorden.station].includes(huidigCommando.commando);
             switch (huidigCommando.commando) {
                 case sleutelwoorden.ontmoet:
 
@@ -168,21 +170,39 @@ const parseReis = async (reisscript) => {
                     huidigCommando.context.begintijd = chrono.parseDate(huidigCommando.argumenten);
                     break;
                 case sleutelwoorden.wacht:
-                    if (huidigCommando.argumenten == 'onbekend') break;
-
-                    if (huidigCommando.context.begintijd) {
-                        huidigCommando.context.eindtijd = new Date(huidigCommando.context.begintijd.getTime() + (huidigCommando.argumenten * 60 * 1000));
-                    } else if (huidigCommando.context.eindtijd) {
-                        huidigCommando.context.begintijd = new Date(huidigCommando.context.eindtijd.getTime() - huidigCommando.argumenten * 60 * 1000);
-                    }
-
-                    break;
-                case sleutelwoorden.station:
-                    huidigCommando.context.station = huidigCommando.argumenten;
                     if (volgendCommando && volgendCommando.context.begintijd) {
                         huidigCommando.context.eindtijd = volgendCommando.context.begintijd;
                     }
-                    
+
+                    if (vorigCommando && vorigCommando.context.eindtijd) {
+                        huidigCommando.context.begintijd = vorigCommando.context.eindtijd;
+                    }
+
+                    if (huidigCommando.argumenten == 'onbekend') {
+                        if (volgendCommando && volgendCommando.context.begintijd) {
+                            huidigCommando.context.eindtijd = volgendCommando.context.begintijd;
+                        } else if (vorigCommando && vorigCommando.context.eindtijd) {
+                            huidigCommando.context.begintijd = vorigCommando.context.eindtijd;
+                        }
+                    } else {
+                        if (huidigCommando.context.begintijd) {
+                            huidigCommando.context.eindtijd = new Date(huidigCommando.context.begintijd.getTime() + (1000 * 60 * huidigCommando.argumenten));
+                        } else if (huidigCommando.context.eindtijd) {
+                            huidigCommando.context.begintijd = new Date(huidigCommando.context.eindtijd.getTime() - 1000 * 60 * huidigCommando.argumenten)
+                        }
+                    }
+
+
+                    break;
+                case sleutelwoorden.station:
+                    if (!huidigCommando.context.station) {
+                        huidigCommando.context.station = zoekStation(huidigCommando.argumenten).code.toUpperCase();
+                    }
+
+                    if (volgendCommando && volgendCommando.context.begintijd) {
+                        huidigCommando.context.eindtijd = volgendCommando.context.begintijd;
+                    }
+
                     if (vorigCommando && vorigCommando.context.eindtijd) {
                         huidigCommando.context.begintijd = vorigCommando.context.eindtijd;
                     }
@@ -206,9 +226,18 @@ const parseReis = async (reisscript) => {
                     huidigCommando.context.station = vorigCommando.context.station;
                 }
 
-                if (!huidigCommando.context.begintijd && vorigCommando.context.eindtijd) {
+                if (magPlannen && !huidigCommando.context.begintijd && vorigCommando.context.eindtijd) {
                     if (huidigCommando.context.station && vorigCommando.context.station) {
-                        huidigCommando.context.begintijd = new Date(vorigCommando.context.eindtijd.getTime() + 600000);
+                        const beginstation = vorigCommando.context.station;
+                        const bestemming = huidigCommando.context.station;
+                        const vertrektijd = vorigCommando.context.eindtijd;
+                        const reis = await vroegsteVolledigeReis(beginstation, bestemming, vertrektijd, undefined, false);
+                        nsAntwoorden.push({
+                            index: i,
+                            reis: reis
+                        });
+                        huidigCommando.context.begintijd = extractLeg(reis.legs[reis.legs.length - 1].aankomsttijd);
+
                     }
                 }
             }
@@ -219,13 +248,14 @@ const parseReis = async (reisscript) => {
                 }
 
                 if (!huidigCommando.context.eindtijd && volgendCommando.context.begintijd) {
-                    if (huidigCommando.context.station && volgendCommando.context.station) {
+                    if (huidigCommando.context.station != vorigCommando.context.station) {
                         huidigCommando.context.eindtijd = new Date(volgendCommando.context.begintijd.getTime() - 600000);
                     }
                 }
             }
         }
     }
+    console.log(reis);
 
     return reis;
 }
