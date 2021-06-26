@@ -19,7 +19,7 @@ const extractLeg = (leg, index) => {
         index: index,
         stations: leg.stops.map((stop) => stop.name),
         ritduur: Math.round((aankomsttijd.getTime() - vertrektijd.getTime()) / 1000 / 60)
-    }
+    };
 };
 
 const eerstAankomendeGeldigeRit = (trips, moment, volgritNummer) => {

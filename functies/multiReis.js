@@ -138,7 +138,7 @@ const parseReis = async (reisscript) => {
     const reis = losseregels(reisscript)
         .map(regelCommando);
 
-    let j = -100;
+    let j = 0;
     while (!reis.every(reisBekend)) {
         // console.log(reis);
         if (j++ > reis.length) {
@@ -271,39 +271,58 @@ const parseReis = async (reisscript) => {
         }
     }
 
-    trips = nsAntwoorden
+    const trips = nsAntwoorden
         .sort((a, b) => a.index - b.index)
-        .map((trip) => trip.trip);
+        .map((trip) => trip.reis);
 
     const resultaat = [];
     const urls = [];
     let totalePrijsCent = 0;
+    let stationstijd = 0;
+    let treintijd = 0;
 
-    for (trip in trips) {
-
+    for (const trip of trips) {
         urls.push(trip.shareUrl.uri);
+        await writeJSON(trip, 'trip');
+
+        totalePrijsCent += trip.productFare.priceInCentsExcludingSupplement; //priceInCents;
+        // 100
     
         const rit = trip.legs.map(extractLeg);
-        totalePrijsCent += trip.productFare.priceInCentsExcludingSupplement; //priceInCents;
-    
+
         resultaat.push(...rit);
     }
 
+
+    let beginDatum = resultaat[0].vertrektijd;
+    for (const [index, rit] of resultaat.entries()) {
+        rit.overstaptijd = Math.floor((rit.vertrektijd - beginDatum) / 60 / 1000);
+        if (index > 0) stationstijd += rit.overstaptijd;
+        treintijd += rit.ritduur;
+        beginDatum = rit.aankomsttijd;
+    }
+
+    const reistijd = (resultaat[resultaat.length - 1].aankomsttijd - resultaat[0].vertrektijd) / 1000 / 60;
+    let gepaseerdeStations = [];
+    resultaat.forEach((reisdeel, reisdeelIndex) => reisdeel.stations.filter((_, stationIndex) => reisdeelIndex == 0 || stationIndex > 0).forEach((station) => gepaseerdeStations.push(station)));
+    const polyline = stationsLijstPolyline(gepaseerdeStations);
+
     return {
         prijs: totalePrijsCent,
-        // reistijd: resultaat,
+        reistijd: reistijd,
         urls: urls,
         reis: resultaat,
-        // gepasseerdestations: gepaseerdeStations,
-        // afstand: polylineAfstand(polyline),
-        // hemelsbredeafstand: coordinaatAfstand(polyline[0], polyline[polyline.length - 1]),
-        // polyline: polyline,
-        // treintijd: treintijd,
-        // stationstijd: stationstijd
-    };;
+        gepasseerdestations: gepaseerdeStations,
+        afstand: polylineAfstand(polyline),
+        hemelsbredeafstand: coordinaatAfstand(polyline[0], polyline[polyline.length - 1]),
+        polyline: polyline,
+        treintijd: treintijd,
+        stationstijd: stationstijd
+    };
 }
 
-module.exports = async (tijdstationlijst) => {
+module.exports = parseReis;
+/*async (tijdstationlijst) => {
     await writeJSON(await parseReis(tijdstationlijst), 'reizen');
     process.exit();
 
@@ -367,4 +386,4 @@ module.exports = async (tijdstationlijst) => {
         .map((regel) => isNaN(regel) ? chrono.parseDate(regel) || zoekStation(regel.toLowerCase()).code : (regel));
 
 
-};
+};*/
