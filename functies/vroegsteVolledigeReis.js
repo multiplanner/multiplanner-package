@@ -5,6 +5,7 @@ const {
 } = require('./interpreters.js');
 
 module.exports = async (van, naar, moment, volgRit) => {
+    if (volgRit) moment = new Date(moment - - 2 * 60 * 1000);
     const reis = await haalReisOp(van.toUpperCase(), naar.toUpperCase(), moment.toISOString());
     if (!reis || !reis.trips) stop(van, naar);
     const eersVolgendeRit = eerstAankomendeGeldigeRit(reis.trips, moment, volgRit);

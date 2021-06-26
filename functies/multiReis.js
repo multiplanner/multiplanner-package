@@ -182,7 +182,7 @@ const berekenReizen = async (huidigCommando, vorigCommando, volgendCommando, nsA
             const beginstation = vorigCommando.context.station;
             const bestemming = huidigCommando.context.station;
             const vertrektijd = vorigCommando.context.eindtijd;
-            const reis = await vroegsteVolledigeReis(beginstation, bestemming, vertrektijd, undefined);
+            const reis = await vroegsteVolledigeReis(beginstation, bestemming, vertrektijd, vorigCommando.context.ritnummer);
             nsAntwoorden.push({
                 index: i,
                 reis: reis
@@ -190,6 +190,7 @@ const berekenReizen = async (huidigCommando, vorigCommando, volgendCommando, nsA
             const aankomsttijd = new Date(reis.legs[reis.legs.length - 1].destination.actualDateTime || reis.legs[reis.legs.length - 1].destination.plannedDateTime);
             huidigCommando.context.begintijd = aankomsttijd;
             huidigCommando.context.eindtijd = aankomsttijd;
+            huidigCommando.context.ritnummer = reis.legs[reis.legs.length - 1].product.number;
         }
 
     }
@@ -205,7 +206,7 @@ const berekenReizen = async (huidigCommando, vorigCommando, volgendCommando, nsA
             const beginstation = huidigCommando.context.station;
             const bestemming = volgendCommando.context.station;
             const aankomsttijd = volgendCommando.context.begintijd;
-            const reis = await laatsteVolledigeReis(beginstation, bestemming, aankomsttijd, undefined);
+            const reis = await laatsteVolledigeReis(beginstation, bestemming, aankomsttijd, volgendCommando.context.ritnummer);
             nsAntwoorden.push({
                 index: i,
                 reis: reis
@@ -213,6 +214,7 @@ const berekenReizen = async (huidigCommando, vorigCommando, volgendCommando, nsA
             const vertrektijd = new Date(reis.legs[0].origin.actualDateTime || reis.legs[0].origin.plannedDateTime);
             huidigCommando.context.begintijd = vertrektijd;
             huidigCommando.context.eindtijd = vertrektijd;
+            huidigCommando.context.ritnummer = reis.legs[0].product.number;
         }
     }
 };
@@ -238,14 +240,16 @@ const parseReis = async (reisscript) => {
             
             grensBeginEindtijden(huidigCommando, vorigCommando, volgendCommando);
 
-
-
             switch (huidigCommando.commando) {
                 case sleutelwoorden.vertrek:
                     huidigCommando.context.eindtijd = chrono.parseDate(huidigCommando.argumenten);
+                    geefTijdDoor(huidigCommando);
+
                     break;
                 case sleutelwoorden.aankomst:
                     huidigCommando.context.begintijd = chrono.parseDate(huidigCommando.argumenten);
+                    geefTijdDoor(huidigCommando);
+
                     break;
                 case sleutelwoorden.wacht:
                     if (huidigCommando.argumenten == 'onbekend') {
@@ -288,7 +292,6 @@ const parseReis = async (reisscript) => {
 
     for (const trip of trips) {
         urls.push(trip.shareUrl.uri);
-        await writeJSON(trip, 'trip');
 
         totalePrijsCent += trip.productFare.priceInCentsExcludingSupplement; //priceInCents;
         // 100

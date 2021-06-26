@@ -5,13 +5,14 @@ const path = require('path');
 const formatteerReis = require('./functies/formatteerReis.js');
 
 const {
-    multiReis
+    multiReis,
+    updateMultiplanner
 } = require("./index.js");
 
 (async () => {
     // updateMultiplanner(process.argv[2]);
 })();
-
+// return;
 (async () => {
     const file = process.argv[2];
     if (!file) return console.log("Geef een bestand op met de reis");
