@@ -132,50 +132,115 @@ const regelCommando = (regel) => {
 
 const reisBekend = (commando) => commando.context.eindtijd && commando.context.begintijd && commando.context.station;
 
+const geefTijdDoor = (huidigCommando) => {
+    if (huidigCommando.context.begintijd && !huidigCommando.context.eindtijd) {
+        huidigCommando.context.eindtijd = huidigCommando.context.begintijd;
+    }
+
+    if (huidigCommando.context.eindtijd && !huidigCommando.context.begintijd) {
+        huidigCommando.context.begintijd = huidigCommando.context.eindtijd;
+    }
+};
+
+const tijdVanBuren = (huidigCommando, vorigCommando, volgendCommando) => {
+    if (!huidigCommando.context.eindtijd && volgendCommando && volgendCommando.context.begintijd && volgendCommando.context.station == huidigCommando.context.station) {
+        huidigCommando.context.eindtijd = volgendCommando.context.begintijd;
+    } else if (!huidigCommando.context.begintijd && vorigCommando && vorigCommando.context.eindtijd && vorigCommando.context.station == huidigCommando.context.station) {
+        huidigCommando.context.begintijd = vorigCommando.context.eindtijd;
+    }
+};
+
+const stationVanBuren = (huidigCommando, vorigCommando, volgendCommando) => {
+    if (!huidigCommando.context.station && huidigCommando.commando != sleutelwoorden.station) {
+        if (vorigCommando && vorigCommando.context.station) {
+            huidigCommando.context.station = vorigCommando.context.station;
+        } else if (volgendCommando && volgendCommando.context.station) {
+            huidigCommando.context.station = volgendCommando.context.station;
+        }
+    }
+};
+
+const grensBeginEindtijden = (huidigCommando, vorigCommando, volgendCommando) => {
+    if (!vorigCommando) {
+        huidigCommando.context.begintijd = huidigCommando.context.eindtijd;
+    }
+
+    if (!volgendCommando) {
+        huidigCommando.context.eindtijd = huidigCommando.context.begintijd;
+    }
+}
+
+const berekenReizen = async (huidigCommando, vorigCommando, volgendCommando, nsAntwoorden, i) => {
+    if (vorigCommando) {
+        if (
+            !huidigCommando.context.begintijd &&
+            huidigCommando.context.station &&
+            vorigCommando.context.station &&
+            vorigCommando.context.station != huidigCommando.context.station &&
+            vorigCommando.context.eindtijd
+        ) {
+            const beginstation = vorigCommando.context.station;
+            const bestemming = huidigCommando.context.station;
+            const vertrektijd = vorigCommando.context.eindtijd;
+            const reis = await vroegsteVolledigeReis(beginstation, bestemming, vertrektijd, undefined);
+            nsAntwoorden.push({
+                index: i,
+                reis: reis
+            });
+            const aankomsttijd = new Date(reis.legs[reis.legs.length - 1].destination.actualDateTime || reis.legs[reis.legs.length - 1].destination.plannedDateTime);
+            huidigCommando.context.begintijd = aankomsttijd;
+            huidigCommando.context.eindtijd = aankomsttijd;
+        }
+
+    }
+
+    if (volgendCommando) {
+        if (
+            !huidigCommando.context.eindtijd &&
+            huidigCommando.context.station &&
+            volgendCommando.context.station &&
+            volgendCommando.context.station != huidigCommando.context.station &&
+            volgendCommando.context.begintijd
+        ) {
+            const beginstation = huidigCommando.context.station;
+            const bestemming = volgendCommando.context.station;
+            const aankomsttijd = volgendCommando.context.begintijd;
+            const reis = await laatsteVolledigeReis(beginstation, bestemming, aankomsttijd, undefined);
+            nsAntwoorden.push({
+                index: i,
+                reis: reis
+            });
+            const vertrektijd = new Date(reis.legs[0].origin.actualDateTime || reis.legs[0].origin.plannedDateTime);
+            huidigCommando.context.begintijd = vertrektijd;
+            huidigCommando.context.eindtijd = vertrektijd;
+        }
+    }
+};
+
 const parseReis = async (reisscript) => {
     const nsAntwoorden = [];
 
     const reis = losseregels(reisscript)
         .map(regelCommando);
 
-    let j = 0;
+    let j = -100;
     while (!reis.every(reisBekend)) {
-        // console.log(reis);
         if (j++ > reis.length) {
             await writeJSON(reis, 'reizen');
             throw "Ongeldig reisplan.";
         }
         for (let i = 0; i < reis.length; i++) {
             const huidigCommando = reis[i];
-            if (reisBekend(huidigCommando)) continue;
-
             const vorigCommando = reis[i - 1];
             const volgendCommando = reis[i + 1];
 
-            if (!vorigCommando) {
-                huidigCommando.context.begintijd = huidigCommando.context.eindtijd;
-            }
-
-            if (!volgendCommando) {
-                huidigCommando.context.eindtijd = huidigCommando.context.begintijd;
-            }
+            if (reisBekend(huidigCommando)) continue;
+            
+            grensBeginEindtijden(huidigCommando, vorigCommando, volgendCommando);
 
 
-            if (volgendCommando && volgendCommando.context.begintijd && volgendCommando.context.station == huidigCommando.context.station) {
-                huidigCommando.context.eindtijd = volgendCommando.context.begintijd;
-            }
-
-            if (vorigCommando && vorigCommando.context.eindtijd && vorigCommando.context.station == huidigCommando.context.station) {
-                huidigCommando.context.begintijd = vorigCommando.context.eindtijd;
-            }
 
             switch (huidigCommando.commando) {
-                case sleutelwoorden.ontmoet:
-
-                    break;
-                case sleutelwoorden.stel:
-
-                    break;
                 case sleutelwoorden.vertrek:
                     huidigCommando.context.eindtijd = chrono.parseDate(huidigCommando.argumenten);
                     break;
@@ -184,11 +249,6 @@ const parseReis = async (reisscript) => {
                     break;
                 case sleutelwoorden.wacht:
                     if (huidigCommando.argumenten == 'onbekend') {
-                        if (volgendCommando && volgendCommando.context.begintijd) {
-                            huidigCommando.context.eindtijd = volgendCommando.context.begintijd;
-                        } else if (vorigCommando && vorigCommando.context.eindtijd) {
-                            huidigCommando.context.begintijd = vorigCommando.context.eindtijd;
-                        }
                     } else {
                         if (huidigCommando.context.begintijd) {
                             huidigCommando.context.eindtijd = new Date(huidigCommando.context.begintijd.getTime() + (1000 * 60 * huidigCommando.argumenten));
@@ -197,77 +257,22 @@ const parseReis = async (reisscript) => {
                         }
                     }
 
-
                     break;
                 case sleutelwoorden.station:
                     if (!huidigCommando.context.station) {
                         huidigCommando.context.station = zoekStation(huidigCommando.argumenten).code.toUpperCase();
                     }
-
-                    if (huidigCommando.context.begintijd) {
-                        huidigCommando.context.eindtijd = huidigCommando.context.begintijd;
-                    }
-
-                    if (huidigCommando.context.eindtijd) {
-                        huidigCommando.context.begintijd = huidigCommando.context.eindtijd;
-                    }
+                    geefTijdDoor(huidigCommando);
 
                     break;
-                case sleutelwoorden.reis:
-                    break;
             }
 
-            if (vorigCommando) {                
-                if (
-                    !huidigCommando.context.begintijd &&
-                    huidigCommando.context.station &&
-                    vorigCommando.context.station &&
-                    vorigCommando.context.station != huidigCommando.context.station &&
-                    vorigCommando.context.eindtijd
-                ) {
-                    const beginstation = vorigCommando.context.station;
-                    const bestemming = huidigCommando.context.station;
-                    const vertrektijd = vorigCommando.context.eindtijd;
-                    const reis = await vroegsteVolledigeReis(beginstation, bestemming, vertrektijd, undefined, false);
-                    nsAntwoorden.push({
-                        index: i,
-                        reis: reis
-                    });
-                    const aankomsttijd = new Date(reis.legs[reis.legs.length - 1].destination.actualDateTime || reis.legs[reis.legs.length - 1].destination.plannedDateTime);
-                    huidigCommando.context.begintijd = aankomsttijd;
-                    huidigCommando.context.eindtijd = aankomsttijd;
-                }
 
-                if (!huidigCommando.context.station) {
-                    huidigCommando.context.station = vorigCommando.context.station;
-                }
-            }
+            stationVanBuren(huidigCommando, vorigCommando, volgendCommando);
+            tijdVanBuren(huidigCommando, vorigCommando, volgendCommando);
 
-            if (volgendCommando) {
-                if (
-                    !huidigCommando.context.eindtijd &&
-                    huidigCommando.context.station &&
-                    volgendCommando.context.station &&
-                    volgendCommando.context.station != huidigCommando.context.station &&
-                    volgendCommando.context.begintijd
-                ) {
-                    const beginstation = huidigCommando.context.station;
-                    const bestemming = volgendCommando.context.station;
-                    const aankomsttijd = volgendCommando.context.begintijd;
-                    const reis = await laatsteVolledigeReis(beginstation, bestemming, aankomsttijd, undefined);
-                    nsAntwoorden.push({
-                        index: i,
-                        reis: reis
-                    });
-                    const vertrektijd = new Date(reis.legs[0].origin.actualDateTime || reis.legs[0].origin.plannedDateTime);
-                    huidigCommando.context.begintijd = vertrektijd;
-                    huidigCommando.context.eindtijd = vertrektijd;                    
-                }
 
-                if (!huidigCommando.context.station) {
-                    huidigCommando.context.station = volgendCommando.context.station;
-                }
-            }
+            await berekenReizen(huidigCommando, vorigCommando, volgendCommando, nsAntwoorden, i);
         }
     }
 
@@ -287,7 +292,7 @@ const parseReis = async (reisscript) => {
 
         totalePrijsCent += trip.productFare.priceInCentsExcludingSupplement; //priceInCents;
         // 100
-    
+
         const rit = trip.legs.map(extractLeg);
 
         resultaat.push(...rit);

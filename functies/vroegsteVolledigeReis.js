@@ -4,7 +4,7 @@ const {
     eerstAankomendeGeldigeRit
 } = require('./interpreters.js');
 
-module.exports = async (van, naar, moment, volgRit, aankomsttijd) => {
+module.exports = async (van, naar, moment, volgRit) => {
     const reis = await haalReisOp(van.toUpperCase(), naar.toUpperCase(), moment.toISOString());
     if (!reis || !reis.trips) stop(van, naar);
     const eersVolgendeRit = eerstAankomendeGeldigeRit(reis.trips, moment, volgRit);
