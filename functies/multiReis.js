@@ -23,6 +23,11 @@ const sleutelwoorden = {
     reis: 'reis'
 };
 
+const argumentwoorden = {
+    onbekend: 'onbekend',
+    nu: 'nu'
+};
+
 const filterSleutelwoorden = (regel, sleutelwoord) => {
     const woorden = regel.split(' ');
     if (woorden.shift() == sleutelwoord) {
@@ -224,7 +229,7 @@ const parseReis = async (reisscript) => {
 
     const reis = losseregels(reisscript)
         .map(regelCommando);
-
+        
     let j = 0;
     while (!reis.every(reisBekend)) {
         if (j++ > reis.length) {
