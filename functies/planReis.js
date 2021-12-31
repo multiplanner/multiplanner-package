@@ -71,7 +71,8 @@ const planReis = async (reisplan) => {
         station.code = zoekStation(station.station).code;
     }
 
-    if (!reis.some(station => station.vertrek || station.aankomst)) reisplan[0].vertrek = new Date();
+    console.log(reisplan);
+    if (!reis.some(station => station.vertrek || station.aankomst)) reisplan.reis[0].vertrek = new Date();
     reis[0].aangekomen = true;
     reis[reis.length - 1].vertrokken = true;
 
