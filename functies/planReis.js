@@ -85,11 +85,9 @@ const planReis = async (reisplan) => {
         }
 
         if (i++ > reis.length * 2 + 2) {
-            throw new Error("Ongeldig reisplan.");
+            throw "Ongeldig reisplan.";
         }
     }
-
-    console.log(reis);
 
     const trips = nsAntwoorden
         .sort((a, b) => a.index - b.index)
