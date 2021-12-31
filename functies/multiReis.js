@@ -25,32 +25,31 @@ const reisScriptNaarRequest = (reisScript) => {
     const regels = losseregels(reisScript);
 
     const vertrekdatum = chrono.parseDate(regels[0]);
-    const stationRegels = regels;
-    if (vertrekdatum) {
-        stationRegels = stationRegels.slice(1);
-    }
+    const stationRegels = vertrekdatum ? regels.slice(1) : regels;
 
     const stations = stationRegels.map(regel => {
         const station = {};
 
-        const voorArgument = regel.match(/^([0-9]+:[0-9]+|[0-9]+)(?= [a-zA-Z ])/);
-        const naArgument = regel.match(/(?<=[a-zA-Z ] )([0-9]+:[0-9]+|[0-9]+|\?)$/);
-        const stationArgument = regel.match(/(?<= |^)([a-zA-Z ]+)(?= |$)/);
+        const voorArgument = (regel.match(/^([0-9]+:[0-9]+|[0-9]+)(?= [a-zA-Z ])/) || [undefined])[0];
+        const naArgument = (regel.match(/(?<=[a-zA-Z ] )([0-9]+:[0-9]+|[0-9]+|\?)$/) || [undefined])[0];
+        const stationArgument = regel.match(/(?<= |^)([a-zA-Z ]+)(?= |$)/)[0];
 
         const wachtSwitches = [
-            [(wacht) => !isNaN(wacht), (wacht) => station.wacht = wacht],
-            
-            [(argument) => argument == "?", () => station.wacht = -1]
+            [argument => !argument, () => {}],
+            [argument => !isNaN(argument), (wacht) => station.wacht = wacht],
+            [argument => argument == "?", () => station.wacht = -1]
         ];
 
+        const parseDate = (argument) => chrono.parseDate(argument, vertrekdatum);
+
         invertedSwitch([
-            [chrono.parseDate, (_, moment) => station.aankomst = moment],
-            ...wachtSwitches
+            ...wachtSwitches,
+            [parseDate, (_, moment) => station.aankomst = moment]
         ], voorArgument);
 
         invertedSwitch([
-            [chrono.parseDate, (_, moment) => station.vertrek = moment],
-            ...wachtSwitches
+            ...wachtSwitches,
+            [parseDate, (_, moment) => station.vertrek = moment]
         ], naArgument);
 
         station.station = stationArgument;
@@ -58,7 +57,7 @@ const reisScriptNaarRequest = (reisScript) => {
         return station;
     });
 
-    stations[0] = vertrekdatum;
+    stations[0].vertrek = vertrekdatum;
 
     return {
         reis: stations
