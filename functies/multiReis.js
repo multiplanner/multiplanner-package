@@ -29,10 +29,10 @@ const reisScriptNaarRequest = (reisScript) => {
 
     const stations = stationRegels.map(regel => {
         const station = {};
-
-        const voorArgument = (regel.match(/^([0-9]+:[0-9]+|[0-9]+)(?= [a-zA-Z ])/) || [undefined])[0];
-        const naArgument = (regel.match(/(?<=[a-zA-Z ] )([0-9]+:[0-9]+|[0-9]+|\?)$/) || [undefined])[0];
-        const stationArgument = regel.match(/(?<= |^)([a-zA-Z ]+)(?= |$)/)[0];
+        
+        const voorArgument = (regel.match(/^([0-9]+:[0-9]+|[0-9]+)/) || [undefined])[0];
+        const naArgument = (regel.match(/([0-9]+:[0-9]+|[0-9]+) *$/) || [undefined])[0];
+        const stationArgument = regel.match(/(?<= |^)([^0-9:\n]+)(?= |$)/)[0];
 
         const wachtSwitches = [
             [argument => !argument, () => {}],

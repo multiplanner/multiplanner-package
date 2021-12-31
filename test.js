@@ -13,16 +13,11 @@ const {
 const planReis = require('./functies/planReis.js');
 
 
-(async () => {
-    // await updateMultiplanner(process.argv[2]);
-})();
-/*
-(async () => {
-    const reisplan = await readJSON("reis");
-    console.log(formatteerReis(await planReis(reisplan)));
-})();*/
+// (async () => {
+//     await updateMultiplanner(process.argv[2]);
+// })();
+//  return;
 
-// return;
 (async () => {
     const file = process.argv[2];
     if (!file) return console.log("Geef een bestand op met de reis");
