@@ -7,7 +7,6 @@ const {
 const writeJSON = require('./writeJSON.js');
 
 const reisStats = (trips) => {
-    // writeJSON(trips, "trips");
     const legs = [];
     const urls = [];
     let totalePrijsCent = 0;
