@@ -1,19 +1,9 @@
 const vertrekTijd = (trip) => new Date(trip.legs[0].origin.plannedDateTime);
 const aankomstTijd = (trip) => new Date(trip.legs[trip.legs.length - 1].destination.plannedDateTime);
 
-const vertrekTrein = (trip) => {
-    if (!trip.legs[0].product.number) {
-        console.log("!", trip);
-    }
+const vertrekTrein = (trip) => trip.legs[0].product.number;
 
-    return trip.legs[0].product.number;
-}
-const aankomstTrein = (trip) => {
-    if (!trip.legs[trip.legs.length - 1].product.number) {
-        console.log("!", trip);
-    }
-    return trip.legs[trip.legs.length - 1].product.number;
-}
+const aankomstTrein = (trip) => trip.legs[trip.legs.length - 1].product.number;
 
 const extractLeg = (leg, index) => {
     const vertrektijd = new Date(leg.origin.actualDateTime || leg.origin.plannedDateTime);

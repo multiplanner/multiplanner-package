@@ -1,0 +1,32 @@
+Prijs               €94.75              
+Vertrekdatum        3 januari 2022      
+Wachttijd           10 uur en 15 minuten
+Rijtijd             6 uur en 16 minuten 
+Totale reistijd     16 uur en 31 minuten
+Hemelsbrede afstand 135 kilometer       
+Afgelegde afstand   432 kilometer       
+Tijd  Na  Actie                                                  
+06:13   0 Neem de Stoptrein richting Roermond op spoor 2.        
+06:17   4 Stap links uit in Echt.                                
+06:17   0 Neem de Stoptrein richting Roermond op spoor 1.        
+06:26   9 Stap links uit in Roermond.                            
+07:33  67 Neem de Stoptrein richting Nijmegen op spoor 3b.       
+08:52  79 Stap rechts uit in Nijmegen.                           
+09:02  10 Neem de Sprinter richting Zutphen op spoor 1a.         
+09:54  52 Stap rechts uit in Zutphen.                            
+10:07  13 Neem de Stoptrein richting Winterswijk op spoor 1b.    
+10:40  33 Stap links uit in Winterswijk.                         
+10:50  10 Neem de Stoptrein richting Arnhem Centraal op spoor 1b.
+11:39  49 Stap rechts uit in Zevenaar.                           
+12:10  31 Neem de Stoptrein richting Arnhem Centraal op spoor 1. 
+12:25  15 Stap rechts uit in Arnhem Centraal.                    
+12:32   7 Neem de Intercity richting Den Helder op spoor 11.     
+12:42  10 Stap links uit in Ede-Wageningen.                      
+19:42 420 Neem de Intercity richting Den Helder op spoor 3.      
+20:07  25 Stap links uit in Utrecht Centraal.                    
+20:50  43 Neem de Sprinter richting Zwolle op spoor 4.           
+21:52  62 Stap rechts uit in 't Harde.                           
+21:52   0 Neem de Sprinter richting Zwolle op spoor 2.           
+22:06  14 Stap links uit in Zwolle.                              
+22:20  14 Neem de Intercity richting Roosendaal op spoor 10.     
+22:44  24 Stap links uit in Deventer.                            

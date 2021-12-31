@@ -2,15 +2,15 @@
 
 const fs = require('fs');
 const path = require('path');
-const formatteerReis = require('./functies/formatteerReis.js');
-const readJSON = require('./functies/readJSON.js');
+const formatteerReis = require('../functies/formatteerReis.js');
+const readJSON = require('../functies/readJSON');
 
 const {
     multiReis,
     updateMultiplanner
-} = require("./index.js");
+} = require("../index.js");
 
-const planReis = require('./functies/planReis.js');
+const planReis = require('../functies/planReis.js');
 
 
 // (async () => {

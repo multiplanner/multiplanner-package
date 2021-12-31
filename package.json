@@ -1,10 +1,10 @@
 {
   "name": "multiplanner",
-  "version": "3.1.6",
+  "version": "3.2.0",
   "description": "Tool om polydestinale reizen te plannen over het Nederlandse spoornet.",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "cd test; ./test.sh"
   },
   "repository": {
     "type": "git",
