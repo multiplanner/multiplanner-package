@@ -8,12 +8,14 @@
  *  Main index file
  */
 
+const planReis = require('./functies/planReis.js');
 const multiReis = require('./functies/multiReis.js');
 const formatteerReis = require('./functies/formatteerReis.js');
 const updateMultiplanner = require('./functies/updateMultiplanner.js');
 
 //Export all of the modules
 module.exports = {
+    planReis,
     multiReis,
     formatteerReis,
     updateMultiplanner

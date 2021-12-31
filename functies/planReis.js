@@ -51,9 +51,7 @@ const berekenTijdenVoorStation = async (reis, index, nsAntwoorden) => {
 };
 
 const planReis = async (reisplan) => {
-    // verwerk ruwe invoer
     const reis = reisplan.reis;
-    const nsAntwoorden = [];
 
     for (const station of reis) {
         if (station.vertrek) station.vertrek = new Date(station.vertrek);
@@ -63,6 +61,7 @@ const planReis = async (reisplan) => {
 
     if (!reis.some(station => station.vertrek || station.aankomst)) reisplan[0].vertrek = new Date();
 
+    const nsAntwoorden = [];
     let i = 0;
     while (!reis.every(isCompleet) && i++ < reis.length * 2 + 2) {
         await Promise.all(reis
@@ -77,6 +76,4 @@ const planReis = async (reisplan) => {
     return reisStats(trips);
 };
 
-module.exports = {
-    planReis
-};
+module.exports = planReis;
