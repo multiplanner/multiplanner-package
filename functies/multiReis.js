@@ -30,14 +30,14 @@ const reisScriptNaarRequest = (reisScript) => {
     const stations = stationRegels.map(regel => {
         const station = {};
         
-        const voorArgument = (regel.match(/^([0-9]+:[0-9]+|[0-9]+)/) || [undefined])[0];
-        const naArgument = (regel.match(/([0-9]+:[0-9]+|[0-9]+) *$/) || [undefined])[0];
-        const stationArgument = regel.match(/(?<= |^)([^0-9:\n?]+)(?= |$)/)[0];
+        const voorArgument = (regel.match(/^([0-9]+:[0-9]+|[0-9]+|\?)/) || [undefined])[0];
+        const naArgument = (regel.match(/([0-9]+:[0-9]+|[0-9]+|\?) *$/) || [undefined])[0];
+        const stationArgument = regel.match(/(?<= |^)([^0-9:?]+)(?= |$)/)[0];
 
         const wachtSwitches = [
             [argument => !argument, () => {}],
             [argument => !isNaN(argument), (wacht) => station.wacht = wacht],
-            [argument => argument == "?", () => station.wacht = -1]
+            [argument => argument == "?", () => station.wacht = -1000]
         ];
 
         const parseDate = (argument) => chrono.parseDate(argument, vertrekdatum);

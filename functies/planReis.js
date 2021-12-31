@@ -16,8 +16,8 @@ const reisStats = require('./reisStats.js');
 
 const berekenWachttijden = (reis) => {
     for (const station of reis) {
-        if (station.vertrek && station.wacht > -1 && !station.aankomst) station.aankomst = new Date(station.vertrek - station.wacht * 60 * 1000);
-        if (station.aankomst && station.wacht > -1 && !station.vertrek) station.vertrek = new Date(station.aankomst - - station.wacht * 60 * 1000);
+        if (station.vertrek && station.wacht > -1000 && !station.aankomst) station.aankomst = new Date(station.vertrek - station.wacht * 60 * 1000);
+        if (station.aankomst && station.wacht > -1000 && !station.vertrek) station.vertrek = new Date(station.aankomst - - station.wacht * 60 * 1000);
     }
 };
 
@@ -26,8 +26,8 @@ const isCompleet = (station) => {
 };
 
 const slaRitDetailsOp = (vertrekstation, aankomststation, trip) => {
-    vertrekstation.vertrekTrein = vertrekTrein(trip);
-    aankomststation.aankomstTrein = aankomstTrein(trip);
+    vertrekstation.trein = vertrekTrein(trip);
+    aankomststation.trein = aankomstTrein(trip);
     vertrekstation.vertrokken = true;
     aankomststation.aangekomen = true;
 };
@@ -40,7 +40,7 @@ const berekenTijdenVoorStation = async (reis, index, nsAntwoorden) => {
     // De vertrektijd van de vorige is bekend, dus de aankomsttijd van huidige kan worden berekend
     if (!station.aankomst && index > 0 && reis[index - 1].vertrek) {
         const vorige = reis[index - 1];
-        const trip = await vroegsteVolledigeReis(vorige.code, station.code, vorige.vertrek, vorige.aankomstTrein);
+        const trip = await vroegsteVolledigeReis(vorige.code, station.code, vorige.vertrek, vorige.trein);
         station.aankomst = aankomstTijd(trip);
         slaRitDetailsOp(vorige, station, trip);
         nsAntwoorden.push({
@@ -52,7 +52,7 @@ const berekenTijdenVoorStation = async (reis, index, nsAntwoorden) => {
     // De aankomsttijd in de volgende is bekend, dus de vertrektijd van huidige kan worden berekend
     if (!station.vertrek && index < reis.length - 1 && reis[index + 1].aankomst) {
         const volgende = reis[index + 1];
-        const trip = await laatsteVolledigeReis(station.code, volgende.code, volgende.aankomst, station.vertrekTrein)
+        const trip = await laatsteVolledigeReis(station.code, volgende.code, volgende.aankomst, volgende.trein)
         station.vertrek = vertrekTijd(trip);
         slaRitDetailsOp(station, volgende, trip);
         nsAntwoorden.push({
@@ -78,9 +78,7 @@ const planReis = async (reisplan) => {
     const nsAntwoorden = [];
     let i = 0;
     while (!reis.every(isCompleet)) {
-        const nietCompleteStations = reis.filter((station) => !isCompleet(station));
-
-        for (const [index, _] of nietCompleteStations.entries()) {
+        for (const [index, _] of reis.entries()) {
             await berekenTijdenVoorStation(reis, index, nsAntwoorden);
         }
 
