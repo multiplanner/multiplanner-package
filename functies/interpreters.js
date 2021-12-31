@@ -1,6 +1,9 @@
 const vertrekTijd = (trip) => new Date(trip.legs[0].origin.plannedDateTime);
 const aankomstTijd = (trip) => new Date(trip.legs[trip.legs.length - 1].destination.plannedDateTime);
 
+const vertrekTrein = (trip) => trip.legs[0].product.number;
+const aankomstTrein = (trip) => trip.legs[trip.legs.length - 1].product.number;
+
 const extractLeg = (leg, index) => {
     const vertrektijd = new Date(leg.origin.actualDateTime || leg.origin.plannedDateTime);
     const aankomsttijd = new Date(leg.destination.actualDateTime || leg.destination.plannedDateTime);
@@ -47,5 +50,7 @@ module.exports = {
     laatstAankomendeGeldigeRit,
     vertrekTijd,
     aankomstTijd,
-    extractLeg
+    extractLeg,
+    vertrekTrein,
+    aankomstTrein
 };
