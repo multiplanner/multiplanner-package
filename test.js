@@ -20,7 +20,7 @@ const
 
 (async () => {
     const reisplan = await readJSON("reis");
-    console.log(await planReis(reisplan));
+    console.log(formatteerReis(await planReis(reisplan)));
 })();
 
 return;

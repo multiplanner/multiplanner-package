@@ -11,6 +11,7 @@ const {
     extractLeg
 } = require('./interpreters.js');
 const writeJSON = require('./writeJSON.js');
+const reisStats = require('./reisStats.js');
 
 const berekenWachttijden = (station) => {
     if (station.vertrek && station.wacht && !station.aankomst) station.aankomst = new Date(station.vertrek - - station.wacht);
@@ -22,7 +23,7 @@ const isCompleet = (station) => {
     return station.vertrek && station.aankomst;
 };
 
-const berekenTijdenVoorStation = async (reis, index, legs) => {
+const berekenTijdenVoorStation = async (reis, index, nsAntwoorden) => {
     reis = reis.map(berekenWachttijden);
     const station = reis[index];
 
@@ -31,7 +32,10 @@ const berekenTijdenVoorStation = async (reis, index, legs) => {
         const vorige = reis[index - 1];
         const trip = await vroegsteVolledigeReis(vorige.code, station.code, vorige.vertrek, vorige.ritnummer);
         station.aankomst = aankomstTijd(trip);
-        legs.push(...trip.legs.map((leg, i) => extractLeg(leg, index * 1000 + i)));
+        nsAntwoorden.push({
+            index: index * 2,
+            trip: trip
+        });
     }
 
     // De aankomsttijd in de volgende is bekend, dus de vertrektijd van huidige kan worden berekend
@@ -39,14 +43,17 @@ const berekenTijdenVoorStation = async (reis, index, legs) => {
         const volgende = reis[index + 1];
         const trip = await laatsteVolledigeReis(station.code, volgende.code, volgende.aankomst, station.ritnummer)
         station.vertrek = vertrekTijd(trip);
-        legs.push(...trip.legs.map((leg, i) => extractLeg(leg, index * 1000 + i)));
+        nsAntwoorden.push({
+            index: index * 2 + 1,
+            trip: trip
+        });
     }
 };
 
 const planReis = async (reisplan) => {
     // verwerk ruwe invoer
     const reis = reisplan.reis;
-    const legs = [];
+    const nsAntwoorden = [];
 
     for (const station of reis) {
         if (station.vertrek) station.vertrek = new Date(station.vertrek);
@@ -60,12 +67,14 @@ const planReis = async (reisplan) => {
     while (!reis.every(isCompleet) && i++ < reis.length * 2 + 2) {
         await Promise.all(reis
             .filter((station) => !isCompleet(station))
-            .map((_station, index) => berekenTijdenVoorStation(reis, index, legs)));
+            .map((_station, index) => berekenTijdenVoorStation(reis, index, nsAntwoorden)));
     }
 
-    legs.sort((a, b) => a.index - b.index);
+    const trips = nsAntwoorden
+        .sort((a, b) => a.index - b.index)
+        .map(trip => trip.trip);
 
-    return legs;
+    return reisStats(trips);
 };
 
 module.exports = {
