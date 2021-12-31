@@ -3,15 +3,26 @@
 const fs = require('fs');
 const path = require('path');
 const formatteerReis = require('./functies/formatteerReis.js');
+const readJSON = require('./functies/readJSON.js');
 
 const {
     multiReis,
     updateMultiplanner
 } = require("./index.js");
 
+const
+    { planReis } = require('./functies/planReis.js');
+
+
 (async () => {
-    await updateMultiplanner(process.argv[2]);
+    // await updateMultiplanner(process.argv[2]);
 })();
+
+(async () => {
+    const reisplan = await readJSON("reis");
+    console.log(await planReis(reisplan));
+})();
+
 return;
 (async () => {
     const file = process.argv[2];

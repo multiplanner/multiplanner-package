@@ -45,6 +45,7 @@ const laatstAankomendeGeldigeRit = (trips, moment, volgritNummer) => {
 module.exports = {
     eerstAankomendeGeldigeRit,
     laatstAankomendeGeldigeRit,
+    vertrekTijd,
     aankomstTijd,
     extractLeg
 };
