@@ -10,9 +10,9 @@ const {
 } = require("./index.js");
 
 (async () => {
-    // updateMultiplanner(process.argv[2]);
+    await updateMultiplanner(process.argv[2]);
 })();
-// return;
+return;
 (async () => {
     const file = process.argv[2];
     if (!file) return console.log("Geef een bestand op met de reis");

@@ -1,0 +1,34 @@
+{
+    "reis": [
+        {
+            "station": "Groningen",
+            "vertrek": "2021-12-31T07:00:00.210Z"
+        },
+        {
+            "station": "Zwolle",
+            "wacht": 10
+        },
+        {
+            "station": "Almere centrum"
+        },
+        {
+            "station": "Amsterdam Centraal"
+        },
+        {
+            "station": "Arnhem Centraal",
+            "wacht": -1
+        },
+        {
+            "station": "Winterswijk",
+            "wacht": 300
+        },
+        {
+            "station": "Zutphen",
+            "aankomst": "2021-12-31T14:00:00.210Z",
+            "wacht": 30
+        },
+        {
+            "station": "Opheusden"
+        }
+    ]
+}

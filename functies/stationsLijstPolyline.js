@@ -2,7 +2,7 @@ const vindStation = require('./vindStation.js');
 const haalPolylineOp = require("./haalPolylineOp.js");
 
 module.exports = (stations) => {
-    let polyline = [];
+    const polyline = [];
 
     const volledigestations = stations.map(vindStation);
 
