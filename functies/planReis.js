@@ -16,8 +16,8 @@ const reisStats = require('./reisStats.js');
 
 const berekenWachttijden = (reis) => {
     for (const station of reis) {
-        if (station.vertrek && station.wacht > -1 && !station.aankomst) station.aankomst = new Date(station.vertrek - - station.wacht);
-        if (station.aankomst && station.wacht > -1 && !station.vertrek) station.vertrek = new Date(station.aankomst - station.wacht);
+        if (station.vertrek && station.wacht > -1 && !station.aankomst) station.aankomst = new Date(station.vertrek - station.wacht * 60 * 1000);
+        if (station.aankomst && station.wacht > -1 && !station.vertrek) station.vertrek = new Date(station.aankomst - - station.wacht * 60 * 1000);
     }
 };
 
@@ -88,6 +88,8 @@ const planReis = async (reisplan) => {
             throw new Error("Ongeldig reisplan.");
         }
     }
+
+    console.log(reis);
 
     const trips = nsAntwoorden
         .sort((a, b) => a.index - b.index)
