@@ -71,7 +71,6 @@ const planReis = async (reisplan) => {
         station.code = zoekStation(station.station).code;
     }
 
-    console.log(reisplan);
     if (!reis.some(station => station.vertrek || station.aankomst)) reisplan.reis[0].vertrek = new Date();
     reis[0].aangekomen = true;
     reis[reis.length - 1].vertrokken = true;
@@ -93,8 +92,6 @@ const planReis = async (reisplan) => {
     const trips = nsAntwoorden
         .sort((a, b) => a.index - b.index)
         .map(trip => trip.trip);
-
-    console.log(reis);
 
     return reisStats(trips);
 };
