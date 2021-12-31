@@ -32,7 +32,7 @@ const reisScriptNaarRequest = (reisScript) => {
         
         const voorArgument = (regel.match(/^([0-9]+:[0-9]+|[0-9]+)/) || [undefined])[0];
         const naArgument = (regel.match(/([0-9]+:[0-9]+|[0-9]+) *$/) || [undefined])[0];
-        const stationArgument = regel.match(/(?<= |^)([^0-9:\n]+)(?= |$)/)[0];
+        const stationArgument = regel.match(/(?<= |^)([^0-9:\n?]+)(?= |$)/)[0];
 
         const wachtSwitches = [
             [argument => !argument, () => {}],
