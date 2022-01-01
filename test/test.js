@@ -6,17 +6,10 @@ const formatteerReis = require('../functies/formatteerReis.js');
 const readJSON = require('../functies/readJSON');
 
 const {
-    multiReis,
-    updateMultiplanner
+    multiReis
 } = require("../index.js");
 
 const planReis = require('../functies/planReis.js');
-
-
-// (async () => {
-//     await updateMultiplanner(process.argv[2]);
-// })();
-//  return;
 
 (async () => {
     const file = process.argv[2];

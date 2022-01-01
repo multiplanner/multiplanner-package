@@ -82,7 +82,7 @@ const planReis = async (reisplan) => {
             await berekenTijdenVoorStation(reis, index, nsAntwoorden);
         }
 
-        if (i++ > reis.length * 2 + 2) {
+        if (i++ > reis.length + 1) {
             throw "Ongeldig reisplan.";
         }
     }
