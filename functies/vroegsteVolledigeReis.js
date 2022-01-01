@@ -9,9 +9,7 @@ module.exports = async (van, naar, moment, volgRit) => {
     if (!reis || !reis.trips) stop(van, naar);
     const eersVolgendeRit = eerstAankomendeGeldigeRit(reis.trips, moment, volgRit);
     if (!eersVolgendeRit) stop(van, naar);
-    const trip = await haalTripOp(eersVolgendeRit.ctxRecon);
-    if (!trip.legs) stop(van, naar);
-    return trip;    
+    return eersVolgendeRit;
 };
 
 const stop = (van, naar) => {
