@@ -4,7 +4,7 @@ Wachttijd           10 uur en 15 minuten
 Rijtijd             6 uur en 16 minuten 
 Totale reistijd     16 uur en 31 minuten
 Hemelsbrede afstand 135 kilometer       
-Afgelegde afstand   432 kilometer       
+Afgelegde afstand   431 kilometer       
 Tijd  Na  Actie                                                  
 06:13   0 Neem de Stoptrein richting Roermond op spoor 2.        
 06:17   4 Stap links uit in Echt.                                

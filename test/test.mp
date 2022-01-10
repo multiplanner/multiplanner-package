@@ -1,7 +1,9 @@
 
 
-January 3 2022 06:00
-Susteren          
+January 3, 2022
+
+
+06:00 Susteren          
 Echt              
 Roermond ?        
 Zutphen 10:00     
