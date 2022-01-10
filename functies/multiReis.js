@@ -14,8 +14,7 @@ const haalDataOp = require('./haalDataOp.js');
 const laatsteVolledigeReis = require('./laatsteVolledigeReis.js');
 const invertedSwitch = require('./invertedSwitch.js');
 
-
-const bestaat = (element) => !!element;
+const bestaat = (element) => !!element && !element.match(/^(!.*| *$)/);
 
 const losseregels = (tekst) => tekst
     .split("\n")
@@ -24,23 +23,24 @@ const losseregels = (tekst) => tekst
 const reisScriptNaarRequest = (reisScript) => {
     const regels = losseregels(reisScript);
 
-    const vertrekdatum = chrono.parseDate(regels[0]);
-    const stationRegels = vertrekdatum ? regels.slice(1) : regels;
+    const referentiedatum = chrono.parseDate(regels[0]);
 
-    const stations = stationRegels.map(regel => {
+    const stations = regels
+        .slice(referentiedatum && !regels[0].match(/[0-2][0-9]:[0-5][0-9]/))
+        .map(regel => {
         const station = {};
-        
+
         const voorArgument = (regel.match(/^([0-9]+:[0-9]+|[0-9]+|\?)/) || [undefined])[0];
         const naArgument = (regel.match(/([0-9]+:[0-9]+|[0-9]+|\?) *$/) || [undefined])[0];
         const stationArgument = regel.match(/(?<= |^)([^0-9:?]+)(?= |$)/)[0];
 
         const wachtSwitches = [
-            [argument => !argument, () => {}],
+            [argument => !argument, () => { }],
             [argument => !isNaN(argument), (wacht) => station.wacht = wacht],
             [argument => argument == "?", () => station.wacht = -1000]
         ];
 
-        const parseDate = (argument) => chrono.parseDate(argument, vertrekdatum);
+        const parseDate = (argument) => chrono.parseDate(argument, referentiedatum);
 
         invertedSwitch([
             ...wachtSwitches,
@@ -57,7 +57,8 @@ const reisScriptNaarRequest = (reisScript) => {
         return station;
     });
 
-    stations[0].vertrek = vertrekdatum;
+    console.log(stations);
+    process.exit();
 
     return {
         reis: stations
