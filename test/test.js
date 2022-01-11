@@ -2,14 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
-const formatteerReis = require('../functies/formatteerReis.js');
 const readJSON = require('../functies/readJSON');
 
 const {
-    multiReis
-} = require("../index.js");
-
-const planReis = require('../functies/planReis.js');
+    formatteerReis,
+    multiReis,
+    planReis
+ } = require('../index.js');
 
 (async () => {
     const file = process.argv[2];
