@@ -2,7 +2,7 @@ const {
     haalAankomstenOp,
     haalVertrekkenOp
 } = require('./haalTreinenOp');
-const vindStation = require('./vindStation');
+const zoekStation = require('./zoekStation');
 
 const sortDatum = (a, b) => a.tijd - b.tijd;
 
@@ -18,13 +18,13 @@ const parseTrein = trein => ({
 });
 
 const stationAankomsten = async (station) => {
-    const stationscode = vindStation(station).code;
+    const stationscode = zoekStation(station).code;
     const aankomsten = (await haalAankomstenOp(stationscode)).payload.arrivals.map(parseTrein);
     return aankomsten.sort(sortDatum);
 };
 
 const stationVertrekken = async (station) => {
-    const stationscode = vindStation(station).code;
+    const stationscode = zoekStation(station).code;
     const vertrekken = (await haalVertrekkenOp(stationscode)).payload.departures.map(parseTrein);
     return vertrekken.sort(sortDatum);
 }
