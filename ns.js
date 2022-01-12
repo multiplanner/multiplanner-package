@@ -7,7 +7,7 @@ document.getElementsByClassName("container container--padded container--planbar"
 XMLHttpRequest.prototype.vanillaSend = XMLHttpRequest.prototype.send;
 XMLHttpRequest.prototype.send = function(){
     if (this.__zone_symbol__xhrURL.startsWith("https://gateway.apiportal.ns.nl/rio-mlab-proxy-api/reisinfo/api/v3/trips")) {
-        this.open("POST", "https://multiplanner.duckdns.org:80/trips");
+        this.open("POST", "https://multiplanner.duckdns.org/trips");
         const reisplan = document.getElementById("multiplannerinput").value;
         this.vanillaSend(reisplan);
         XMLHttpRequest.prototype.send = XMLHttpRequest.prototype.vanillaSend;
