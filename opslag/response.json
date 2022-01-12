@@ -1,0 +1,1578 @@
+{
+    "source": "HARP",
+    "trips": [
+        {
+            "idx": 0,
+            "uid": "arnu|fromStation=8400071|toStation=8400530|plannedFromTime=2022-01-12T07:02:00+01:00|plannedArrivalTime=2022-01-12T08:25:00+01:00|yearCard=false|excludeHighSpeedTrains=false|searchForAccessibleTrip=false|addChangeTime=0",
+            "ctxRecon": "arnu|fromStation=8400071|toStation=8400530|plannedFromTime=2022-01-12T07:02:00+01:00|plannedArrivalTime=2022-01-12T08:25:00+01:00|yearCard=false|excludeHighSpeedTrains=false|searchForAccessibleTrip=false|addChangeTime=0",
+            "plannedDurationInMinutes": 83,
+            "actualDurationInMinutes": 83,
+            "transfers": 1,
+            "status": "NORMAL",
+            "messages": [],
+            "legs": [
+                {
+                    "idx": "0",
+                    "name": "IC 3018",
+                    "travelType": "PUBLIC_TRANSIT",
+                    "direction": "Den Helder",
+                    "cancelled": false,
+                    "changePossible": true,
+                    "alternativeTransport": false,
+                    "journeyDetailRef": "HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#631455#TA#0#DA#120122#1S#1101149#1T#643#LS#1101028#LT#926#PU#784#RT#3#CA#IC#ZE#3018#ZB#IC 3018 #PC#1#FR#1101149#FT#643#TO#1101028#TT#926#",
+                    "origin": {
+                        "name": "Arnhem Centraal",
+                        "lng": 5.89916658401489,
+                        "lat": 51.9850006103516,
+                        "countryCode": "NL",
+                        "uicCode": "8400071",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T07:02:00+0100",
+                        "actualTimeZoneOffset": 60,
+                        "actualDateTime": "2022-01-12T07:02:00+0100",
+                        "plannedTrack": "11",
+                        "actualTrack": "11",
+                        "checkinStatus": "CHECKIN",
+                        "notes": []
+                    },
+                    "destination": {
+                        "name": "Utrecht Centraal",
+                        "lng": 5.11027765274048,
+                        "lat": 52.0888900756836,
+                        "countryCode": "NL",
+                        "uicCode": "8400621",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T07:37:00+0100",
+                        "actualTimeZoneOffset": 60,
+                        "actualDateTime": "2022-01-12T07:37:00+0100",
+                        "plannedTrack": "5",
+                        "actualTrack": "5",
+                        "exitSide": "LEFT",
+                        "checkinStatus": "NOTHING",
+                        "notes": []
+                    },
+                    "product": {
+                        "number": "3018",
+                        "categoryCode": "IC",
+                        "shortCategoryName": "IC",
+                        "longCategoryName": "Intercity",
+                        "operatorCode": "ns",
+                        "operatorName": "NS",
+                        "operatorAdministrativeCode": 100,
+                        "type": "TRAIN",
+                        "displayName": "NS Intercity"
+                    },
+                    "messages": [],
+                    "stops": [
+                        {
+                            "uicCode": "8400071",
+                            "name": "Arnhem Centraal",
+                            "lat": 51.9850006103516,
+                            "lng": 5.89916658401489,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 0,
+                            "plannedDepartureDateTime": "2022-01-12T07:02:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T07:02:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "actualDepartureTrack": "11",
+                            "plannedDepartureTrack": "11",
+                            "plannedArrivalTrack": "11",
+                            "actualArrivalTrack": "11",
+                            "departureDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400200",
+                            "name": "Ede-Wageningen",
+                            "lat": 52.0277786254883,
+                            "lng": 5.67305564880371,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 3,
+                            "plannedDepartureDateTime": "2022-01-12T07:12:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T07:12:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T07:12:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T07:12:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "3",
+                            "plannedDepartureTrack": "3",
+                            "plannedArrivalTrack": "3",
+                            "actualArrivalTrack": "3",
+                            "departureDelayInSeconds": 0,
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400182",
+                            "name": "Driebergen-Zeist",
+                            "lat": 52.0652770996094,
+                            "lng": 5.25861120223999,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 6,
+                            "plannedDepartureDateTime": "2022-01-12T07:29:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T07:29:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T07:29:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T07:29:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "1",
+                            "plannedDepartureTrack": "1",
+                            "plannedArrivalTrack": "1",
+                            "actualArrivalTrack": "1",
+                            "departureDelayInSeconds": 0,
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400621",
+                            "name": "Utrecht Centraal",
+                            "lat": 52.0888900756836,
+                            "lng": 5.11027765274048,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 9,
+                            "plannedArrivalDateTime": "2022-01-12T07:37:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T07:37:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "5",
+                            "plannedDepartureTrack": "5",
+                            "plannedArrivalTrack": "5",
+                            "actualArrivalTrack": "5",
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        }
+                    ],
+                    "crowdForecast": "LOW",
+                    "punctuality": 92.3,
+                    "crossPlatformTransfer": false,
+                    "shorterStock": false,
+                    "journeyDetail": [
+                        {
+                            "type": "TRAIN_XML",
+                            "link": {
+                                "uri": "/api/v2/journey?id=HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#631455#TA#0#DA#120122#1S#1101149#1T#643#LS#1101028#LT#926#PU#784#RT#3#CA#IC#ZE#3018#ZB#IC 3018 #PC#1#FR#1101149#FT#643#TO#1101028#TT#926#&train=3018&datetime=2022-01-12T07:02:00+01:00"
+                            }
+                        }
+                    ],
+                    "reachable": true,
+                    "plannedDurationInMinutes": 35
+                },
+                {
+                    "idx": "1",
+                    "name": "IC 618",
+                    "travelType": "PUBLIC_TRANSIT",
+                    "direction": "Rotterdam Centraal",
+                    "cancelled": false,
+                    "changePossible": true,
+                    "alternativeTransport": false,
+                    "journeyDetailRef": "HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#4623#TA#0#DA#120122#1S#1101479#1T#547#LS#1100690#LT#825#PU#784#RT#1#CA#IC#ZE#618#ZB#IC 618  #PC#1#FR#1101479#FT#547#TO#1100690#TT#825#",
+                    "origin": {
+                        "name": "Utrecht Centraal",
+                        "lng": 5.11027765274048,
+                        "lat": 52.0888900756836,
+                        "countryCode": "NL",
+                        "uicCode": "8400621",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T07:48:00+0100",
+                        "actualTimeZoneOffset": 60,
+                        "actualDateTime": "2022-01-12T07:49:00+0100",
+                        "plannedTrack": "9",
+                        "actualTrack": "9",
+                        "checkinStatus": "NOTHING",
+                        "notes": []
+                    },
+                    "destination": {
+                        "name": "Rotterdam Centraal",
+                        "lng": 4.46888875961304,
+                        "lat": 51.9249992370605,
+                        "countryCode": "NL",
+                        "uicCode": "8400530",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T08:25:00+0100",
+                        "actualTimeZoneOffset": 60,
+                        "actualDateTime": "2022-01-12T08:25:00+0100",
+                        "plannedTrack": "14",
+                        "actualTrack": "14",
+                        "exitSide": "RIGHT",
+                        "checkinStatus": "CHECKOUT",
+                        "notes": []
+                    },
+                    "product": {
+                        "number": "618",
+                        "categoryCode": "IC",
+                        "shortCategoryName": "IC",
+                        "longCategoryName": "Intercity",
+                        "operatorCode": "ns",
+                        "operatorName": "NS",
+                        "operatorAdministrativeCode": 100,
+                        "type": "TRAIN",
+                        "displayName": "NS Intercity"
+                    },
+                    "messages": [],
+                    "stops": [
+                        {
+                            "uicCode": "8400621",
+                            "name": "Utrecht Centraal",
+                            "lat": 52.0888900756836,
+                            "lng": 5.11027765274048,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 0,
+                            "plannedDepartureDateTime": "2022-01-12T07:48:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T07:49:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "actualDepartureTrack": "9",
+                            "plannedDepartureTrack": "9",
+                            "plannedArrivalTrack": "9",
+                            "actualArrivalTrack": "9",
+                            "departureDelayInSeconds": 60,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400258",
+                            "name": "Gouda",
+                            "lat": 52.0175018310547,
+                            "lng": 4.70444440841675,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 6,
+                            "plannedDepartureDateTime": "2022-01-12T08:07:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T08:08:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T08:06:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T08:07:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "8",
+                            "plannedDepartureTrack": "8",
+                            "plannedArrivalTrack": "8",
+                            "actualArrivalTrack": "8",
+                            "departureDelayInSeconds": 60,
+                            "arrivalDelayInSeconds": 60,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400507",
+                            "name": "Rotterdam Alexander",
+                            "lat": 51.9519462585449,
+                            "lng": 4.55361127853394,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 9,
+                            "plannedDepartureDateTime": "2022-01-12T08:16:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T08:16:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T08:16:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T08:16:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "2",
+                            "plannedDepartureTrack": "2",
+                            "plannedArrivalTrack": "2",
+                            "actualArrivalTrack": "2",
+                            "departureDelayInSeconds": 0,
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400530",
+                            "name": "Rotterdam Centraal",
+                            "lat": 51.9249992370605,
+                            "lng": 4.46888875961304,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 11,
+                            "plannedArrivalDateTime": "2022-01-12T08:25:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T08:25:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "14",
+                            "plannedDepartureTrack": "14",
+                            "plannedArrivalTrack": "14",
+                            "actualArrivalTrack": "14",
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        }
+                    ],
+                    "crowdForecast": "MEDIUM",
+                    "punctuality": 90.9,
+                    "shorterStock": false,
+                    "journeyDetail": [
+                        {
+                            "type": "TRAIN_XML",
+                            "link": {
+                                "uri": "/api/v2/journey?id=HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#4623#TA#0#DA#120122#1S#1101479#1T#547#LS#1100690#LT#825#PU#784#RT#1#CA#IC#ZE#618#ZB#IC 618  #PC#1#FR#1101479#FT#547#TO#1100690#TT#825#&train=618&datetime=2022-01-12T07:48:00+01:00"
+                            }
+                        }
+                    ],
+                    "reachable": true,
+                    "plannedDurationInMinutes": 37
+                }
+            ],
+            "crowdForecast": "MEDIUM",
+            "punctuality": 90.9,
+            "optimal": false,
+            "fareRoute": {
+                "routeId": "=KBgRmSWFcQ==",
+                "origin": {
+                    "varCode": 71,
+                    "name": "Arnhem Centraal"
+                },
+                "destination": {
+                    "varCode": 530,
+                    "name": "Rotterdam Centraal"
+                }
+            },
+            "fares": [
+                {
+                    "priceInCents": 3474,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 2080,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 2779,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 1664,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 2084,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 1248,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 6948,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 4160,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 5558,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 3328,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 4168,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 2496,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 73850,
+                    "product": "TRAJECT_VRIJ_MAAND",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 43700,
+                    "product": "TRAJECT_VRIJ_MAAND",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 61250,
+                    "product": "TRAJECT_VRIJ_JAAR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 36240,
+                    "product": "TRAJECT_VRIJ_JAAR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 734965,
+                    "product": "BUSINESS_CARD_TRAJECT_VRIJ_JAAR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 434910,
+                    "product": "BUSINESS_CARD_TRAJECT_VRIJ_JAAR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                }
+            ],
+            "fareLegs": [
+                {
+                    "origin": {
+                        "name": "Arnhem Centraal",
+                        "lng": 5.89916658401489,
+                        "lat": 51.9850006103516,
+                        "countryCode": "NL",
+                        "uicCode": "8400071",
+                        "type": "STATION"
+                    },
+                    "destination": {
+                        "name": "Rotterdam Centraal",
+                        "lng": 4.46888875961304,
+                        "lat": 51.9249992370605,
+                        "countryCode": "NL",
+                        "uicCode": "8400530",
+                        "type": "STATION"
+                    },
+                    "operator": "NS",
+                    "productTypes": [
+                        "TRAIN"
+                    ],
+                    "fares": [
+                        {
+                            "priceInCents": 2080,
+                            "priceInCentsExcludingSupplement": 2080,
+                            "supplementInCents": 0,
+                            "buyableTicketSupplementPriceInCents": 0,
+                            "product": "OVCHIPKAART_ENKELE_REIS",
+                            "travelClass": "SECOND_CLASS",
+                            "discountType": "NO_DISCOUNT"
+                        }
+                    ]
+                }
+            ],
+            "productFare": {
+                "priceInCents": 2080,
+                "priceInCentsExcludingSupplement": 2080,
+                "buyableTicketPriceInCents": 2080,
+                "buyableTicketPriceInCentsExcludingSupplement": 2080,
+                "product": "OVCHIPKAART_ENKELE_REIS",
+                "travelClass": "SECOND_CLASS",
+                "discountType": "NO_DISCOUNT"
+            },
+            "fareOptions": {
+                "isInternationalBookable": false,
+                "isInternational": false,
+                "isEticketBuyable": true,
+                "isPossibleWithOvChipkaart": true,
+                "isTotalPriceUnknown": false
+            },
+            "type": "NS",
+            "shareUrl": {
+                "uri": "https://www.ns.nl/rpx?ctx=arnu%7CfromStation%3D8400071%7CtoStation%3D8400530%7CplannedFromTime%3D2022-01-12T07%3A02%3A00%2B01%3A00%7CplannedArrivalTime%3D2022-01-12T08%3A25%3A00%2B01%3A00%7CyearCard%3Dfalse%7CexcludeHighSpeedTrains%3Dfalse%7CsearchForAccessibleTrip%3Dfalse%7CaddChangeTime%3D0"
+            },
+            "realtime": true,
+            "routeId": "=KBgRmSWFcQ==",
+            "registerJourney": {
+                "searchUrl": "https://treinwijzer.ns.nl/idp/login?search=true&originUicCode=8400071&destinationUicCode=8400530&dateTime=2022-01-12T07%3A50%3A00%2B01%3A00&searchForArrival=false&excludeHighSpeedTrains=false&localTrainsOnly=false&yearCard=false&addChangeTime=0&searchForAccessibleTrip=false&lang=nl&travelAssistance=false&travelAssistanceTransferTime=0",
+                "status": "DATE_IN_PAST",
+                "bicycleReservationRequired": false,
+                "availability": {
+                    "seats": false,
+                    "bicycle": false
+                }
+            }
+        },
+        {
+            "idx": 1,
+            "uid": "arnu|fromStation=8400071|toStation=8400530|plannedFromTime=2022-01-12T07:21:00+01:00|plannedArrivalTime=2022-01-12T08:40:00+01:00|yearCard=false|excludeHighSpeedTrains=false|searchForAccessibleTrip=false|addChangeTime=0",
+            "ctxRecon": "arnu|fromStation=8400071|toStation=8400530|plannedFromTime=2022-01-12T07:21:00+01:00|plannedArrivalTime=2022-01-12T08:40:00+01:00|yearCard=false|excludeHighSpeedTrains=false|searchForAccessibleTrip=false|addChangeTime=0",
+            "plannedDurationInMinutes": 79,
+            "actualDurationInMinutes": 79,
+            "transfers": 1,
+            "status": "NORMAL",
+            "messages": [],
+            "legs": [
+                {
+                    "idx": "0",
+                    "name": "IC 3220",
+                    "travelType": "PUBLIC_TRANSIT",
+                    "direction": "Rotterdam Centraal",
+                    "cancelled": false,
+                    "changePossible": true,
+                    "alternativeTransport": false,
+                    "journeyDetailRef": "HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#533711#TA#0#DA#120122#1S#1100943#1T#721#LS#1101890#LT#928#PU#784#RT#1#CA#IC#ZE#3220#ZB#IC 3220 #PC#1#FR#1100943#FT#721#TO#1101890#TT#928#",
+                    "origin": {
+                        "name": "Arnhem Centraal",
+                        "lng": 5.89916658401489,
+                        "lat": 51.9850006103516,
+                        "countryCode": "NL",
+                        "uicCode": "8400071",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T07:21:00+0100",
+                        "actualTimeZoneOffset": 60,
+                        "actualDateTime": "2022-01-12T07:21:00+0100",
+                        "plannedTrack": "9",
+                        "actualTrack": "9",
+                        "checkinStatus": "CHECKIN",
+                        "notes": []
+                    },
+                    "destination": {
+                        "name": "Utrecht Centraal",
+                        "lng": 5.11027765274048,
+                        "lat": 52.0888900756836,
+                        "countryCode": "NL",
+                        "uicCode": "8400621",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T07:56:00+0100",
+                        "actualTimeZoneOffset": 60,
+                        "actualDateTime": "2022-01-12T07:56:00+0100",
+                        "plannedTrack": "5",
+                        "actualTrack": "5",
+                        "exitSide": "LEFT",
+                        "checkinStatus": "NOTHING",
+                        "notes": []
+                    },
+                    "product": {
+                        "number": "3220",
+                        "categoryCode": "IC",
+                        "shortCategoryName": "IC",
+                        "longCategoryName": "Intercity",
+                        "operatorCode": "ns",
+                        "operatorName": "NS",
+                        "operatorAdministrativeCode": 100,
+                        "type": "TRAIN",
+                        "displayName": "NS Intercity"
+                    },
+                    "messages": [],
+                    "stops": [
+                        {
+                            "uicCode": "8400071",
+                            "name": "Arnhem Centraal",
+                            "lat": 51.9850006103516,
+                            "lng": 5.89916658401489,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 0,
+                            "plannedDepartureDateTime": "2022-01-12T07:21:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T07:21:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "actualDepartureTrack": "9",
+                            "plannedDepartureTrack": "9",
+                            "plannedArrivalTrack": "9",
+                            "actualArrivalTrack": "9",
+                            "departureDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400200",
+                            "name": "Ede-Wageningen",
+                            "lat": 52.0277786254883,
+                            "lng": 5.67305564880371,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 3,
+                            "plannedDepartureDateTime": "2022-01-12T07:31:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T07:31:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T07:31:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T07:31:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "3",
+                            "plannedDepartureTrack": "3",
+                            "plannedArrivalTrack": "3",
+                            "actualArrivalTrack": "3",
+                            "departureDelayInSeconds": 0,
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400637",
+                            "name": "Veenendaal-De Klomp",
+                            "lat": 52.0458335876465,
+                            "lng": 5.57388877868652,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 4,
+                            "plannedDepartureDateTime": "2022-01-12T07:37:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T07:37:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T07:37:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T07:37:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "1",
+                            "plannedDepartureTrack": "1",
+                            "plannedArrivalTrack": "1",
+                            "actualArrivalTrack": "1",
+                            "departureDelayInSeconds": 0,
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400621",
+                            "name": "Utrecht Centraal",
+                            "lat": 52.0888900756836,
+                            "lng": 5.11027765274048,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 9,
+                            "plannedArrivalDateTime": "2022-01-12T07:56:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T07:56:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "5",
+                            "plannedDepartureTrack": "5",
+                            "plannedArrivalTrack": "5",
+                            "actualArrivalTrack": "5",
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        }
+                    ],
+                    "crowdForecast": "LOW",
+                    "punctuality": 100.0,
+                    "crossPlatformTransfer": false,
+                    "shorterStock": false,
+                    "journeyDetail": [
+                        {
+                            "type": "TRAIN_XML",
+                            "link": {
+                                "uri": "/api/v2/journey?id=HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#533711#TA#0#DA#120122#1S#1100943#1T#721#LS#1101890#LT#928#PU#784#RT#1#CA#IC#ZE#3220#ZB#IC 3220 #PC#1#FR#1100943#FT#721#TO#1101890#TT#928#&train=3220&datetime=2022-01-12T07:21:00+01:00"
+                            }
+                        }
+                    ],
+                    "reachable": true,
+                    "plannedDurationInMinutes": 35
+                },
+                {
+                    "idx": "1",
+                    "name": "IC 2820",
+                    "travelType": "PUBLIC_TRANSIT",
+                    "direction": "Rotterdam Centraal",
+                    "cancelled": false,
+                    "changePossible": true,
+                    "alternativeTransport": false,
+                    "journeyDetailRef": "HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#532330#TA#2#DA#120122#1S#1100672#1T#803#LS#1100690#LT#840#PU#784#RT#1#CA#IC#ZE#2820#ZB#IC 2820 #PC#1#FR#1100672#FT#803#TO#1100690#TT#840#",
+                    "origin": {
+                        "name": "Utrecht Centraal",
+                        "lng": 5.11027765274048,
+                        "lat": 52.0888900756836,
+                        "countryCode": "NL",
+                        "uicCode": "8400621",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T08:03:00+0100",
+                        "plannedTrack": "11",
+                        "actualTrack": "11",
+                        "checkinStatus": "NOTHING",
+                        "notes": []
+                    },
+                    "destination": {
+                        "name": "Rotterdam Centraal",
+                        "lng": 4.46888875961304,
+                        "lat": 51.9249992370605,
+                        "countryCode": "NL",
+                        "uicCode": "8400530",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T08:40:00+0100",
+                        "plannedTrack": "14",
+                        "actualTrack": "14",
+                        "exitSide": "RIGHT",
+                        "checkinStatus": "CHECKOUT",
+                        "notes": []
+                    },
+                    "product": {
+                        "number": "2820",
+                        "categoryCode": "IC",
+                        "shortCategoryName": "IC",
+                        "longCategoryName": "Intercity",
+                        "operatorCode": "ns",
+                        "operatorName": "NS",
+                        "operatorAdministrativeCode": 100,
+                        "type": "TRAIN",
+                        "displayName": "NS Intercity"
+                    },
+                    "messages": [],
+                    "stops": [
+                        {
+                            "uicCode": "8400621",
+                            "name": "Utrecht Centraal",
+                            "lat": 52.0888900756836,
+                            "lng": 5.11027765274048,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 0,
+                            "plannedDepartureDateTime": "2022-01-12T08:03:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureTrack": "11",
+                            "plannedDepartureTrack": "11",
+                            "plannedArrivalTrack": "11",
+                            "actualArrivalTrack": "11",
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400258",
+                            "name": "Gouda",
+                            "lat": 52.0175018310547,
+                            "lng": 4.70444440841675,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 6,
+                            "plannedDepartureDateTime": "2022-01-12T08:22:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T08:21:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "8",
+                            "plannedDepartureTrack": "8",
+                            "plannedArrivalTrack": "8",
+                            "actualArrivalTrack": "8",
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400507",
+                            "name": "Rotterdam Alexander",
+                            "lat": 51.9519462585449,
+                            "lng": 4.55361127853394,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 9,
+                            "plannedDepartureDateTime": "2022-01-12T08:31:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T08:31:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "2",
+                            "plannedDepartureTrack": "2",
+                            "plannedArrivalTrack": "2",
+                            "actualArrivalTrack": "2",
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400530",
+                            "name": "Rotterdam Centraal",
+                            "lat": 51.9249992370605,
+                            "lng": 4.46888875961304,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 11,
+                            "plannedArrivalDateTime": "2022-01-12T08:40:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "14",
+                            "plannedDepartureTrack": "14",
+                            "plannedArrivalTrack": "14",
+                            "actualArrivalTrack": "14",
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        }
+                    ],
+                    "crowdForecast": "LOW",
+                    "punctuality": 100.0,
+                    "shorterStock": false,
+                    "journeyDetail": [
+                        {
+                            "type": "TRAIN_XML",
+                            "link": {
+                                "uri": "/api/v2/journey?id=HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#532330#TA#2#DA#120122#1S#1100672#1T#803#LS#1100690#LT#840#PU#784#RT#1#CA#IC#ZE#2820#ZB#IC 2820 #PC#1#FR#1100672#FT#803#TO#1100690#TT#840#&train=2820&datetime=2022-01-12T08:03:00+01:00"
+                            }
+                        }
+                    ],
+                    "reachable": true,
+                    "plannedDurationInMinutes": 37
+                }
+            ],
+            "crowdForecast": "LOW",
+            "punctuality": 100.0,
+            "optimal": false,
+            "fareRoute": {
+                "routeId": "=KBgRmSWFcQ==",
+                "origin": {
+                    "varCode": 71,
+                    "name": "Arnhem Centraal"
+                },
+                "destination": {
+                    "varCode": 530,
+                    "name": "Rotterdam Centraal"
+                }
+            },
+            "fares": [
+                {
+                    "priceInCents": 3474,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 2080,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 2779,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 1664,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 2084,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 1248,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 6948,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 4160,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 5558,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 3328,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 4168,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 2496,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 73850,
+                    "product": "TRAJECT_VRIJ_MAAND",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 43700,
+                    "product": "TRAJECT_VRIJ_MAAND",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 61250,
+                    "product": "TRAJECT_VRIJ_JAAR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 36240,
+                    "product": "TRAJECT_VRIJ_JAAR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 734965,
+                    "product": "BUSINESS_CARD_TRAJECT_VRIJ_JAAR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 434910,
+                    "product": "BUSINESS_CARD_TRAJECT_VRIJ_JAAR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                }
+            ],
+            "fareLegs": [
+                {
+                    "origin": {
+                        "name": "Arnhem Centraal",
+                        "lng": 5.89916658401489,
+                        "lat": 51.9850006103516,
+                        "countryCode": "NL",
+                        "uicCode": "8400071",
+                        "type": "STATION"
+                    },
+                    "destination": {
+                        "name": "Rotterdam Centraal",
+                        "lng": 4.46888875961304,
+                        "lat": 51.9249992370605,
+                        "countryCode": "NL",
+                        "uicCode": "8400530",
+                        "type": "STATION"
+                    },
+                    "operator": "NS",
+                    "productTypes": [
+                        "TRAIN"
+                    ],
+                    "fares": [
+                        {
+                            "priceInCents": 2080,
+                            "priceInCentsExcludingSupplement": 2080,
+                            "supplementInCents": 0,
+                            "buyableTicketSupplementPriceInCents": 0,
+                            "product": "OVCHIPKAART_ENKELE_REIS",
+                            "travelClass": "SECOND_CLASS",
+                            "discountType": "NO_DISCOUNT"
+                        }
+                    ]
+                }
+            ],
+            "productFare": {
+                "priceInCents": 2080,
+                "priceInCentsExcludingSupplement": 2080,
+                "buyableTicketPriceInCents": 2080,
+                "buyableTicketPriceInCentsExcludingSupplement": 2080,
+                "product": "OVCHIPKAART_ENKELE_REIS",
+                "travelClass": "SECOND_CLASS",
+                "discountType": "NO_DISCOUNT"
+            },
+            "fareOptions": {
+                "isInternationalBookable": false,
+                "isInternational": false,
+                "isEticketBuyable": true,
+                "isPossibleWithOvChipkaart": true,
+                "isTotalPriceUnknown": false
+            },
+            "type": "NS",
+            "shareUrl": {
+                "uri": "https://www.ns.nl/rpx?ctx=arnu%7CfromStation%3D8400071%7CtoStation%3D8400530%7CplannedFromTime%3D2022-01-12T07%3A21%3A00%2B01%3A00%7CplannedArrivalTime%3D2022-01-12T08%3A40%3A00%2B01%3A00%7CyearCard%3Dfalse%7CexcludeHighSpeedTrains%3Dfalse%7CsearchForAccessibleTrip%3Dfalse%7CaddChangeTime%3D0"
+            },
+            "realtime": true,
+            "routeId": "=KBgRmSWFcQ==",
+            "registerJourney": {
+                "searchUrl": "https://treinwijzer.ns.nl/idp/login?search=true&originUicCode=8400071&destinationUicCode=8400530&dateTime=2022-01-12T07%3A50%3A00%2B01%3A00&searchForArrival=false&excludeHighSpeedTrains=false&localTrainsOnly=false&yearCard=false&addChangeTime=0&searchForAccessibleTrip=false&lang=nl&travelAssistance=false&travelAssistanceTransferTime=0",
+                "status": "DATE_IN_PAST",
+                "bicycleReservationRequired": false,
+                "availability": {
+                    "seats": false,
+                    "bicycle": false
+                }
+            }
+        },
+        {
+            "idx": 2,
+            "uid": "arnu|fromStation=8400071|toStation=8400530|plannedFromTime=2022-01-12T07:32:00+01:00|plannedArrivalTime=2022-01-12T08:55:00+01:00|yearCard=false|excludeHighSpeedTrains=false|searchForAccessibleTrip=false|addChangeTime=0",
+            "ctxRecon": "arnu|fromStation=8400071|toStation=8400530|plannedFromTime=2022-01-12T07:32:00+01:00|plannedArrivalTime=2022-01-12T08:55:00+01:00|yearCard=false|excludeHighSpeedTrains=false|searchForAccessibleTrip=false|addChangeTime=0",
+            "plannedDurationInMinutes": 83,
+            "actualDurationInMinutes": 83,
+            "transfers": 1,
+            "status": "NORMAL",
+            "messages": [],
+            "legs": [
+                {
+                    "idx": "0",
+                    "name": "IC 3020",
+                    "travelType": "PUBLIC_TRANSIT",
+                    "direction": "Den Helder",
+                    "cancelled": false,
+                    "changePossible": true,
+                    "alternativeTransport": false,
+                    "journeyDetailRef": "HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#532879#TA#0#DA#120122#1S#1101149#1T#713#LS#1101022#LT#956#PU#784#RT#1#CA#IC#ZE#3020#ZB#IC 3020 #PC#1#FR#1101149#FT#713#TO#1101022#TT#956#",
+                    "origin": {
+                        "name": "Arnhem Centraal",
+                        "lng": 5.89916658401489,
+                        "lat": 51.9850006103516,
+                        "countryCode": "NL",
+                        "uicCode": "8400071",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T07:32:00+0100",
+                        "actualTimeZoneOffset": 60,
+                        "actualDateTime": "2022-01-12T07:32:00+0100",
+                        "plannedTrack": "11",
+                        "actualTrack": "11",
+                        "checkinStatus": "CHECKIN",
+                        "notes": []
+                    },
+                    "destination": {
+                        "name": "Utrecht Centraal",
+                        "lng": 5.11027765274048,
+                        "lat": 52.0888900756836,
+                        "countryCode": "NL",
+                        "uicCode": "8400621",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T08:07:00+0100",
+                        "actualTimeZoneOffset": 60,
+                        "actualDateTime": "2022-01-12T08:07:00+0100",
+                        "plannedTrack": "5",
+                        "actualTrack": "5",
+                        "exitSide": "LEFT",
+                        "checkinStatus": "NOTHING",
+                        "notes": []
+                    },
+                    "product": {
+                        "number": "3020",
+                        "categoryCode": "IC",
+                        "shortCategoryName": "IC",
+                        "longCategoryName": "Intercity",
+                        "operatorCode": "ns",
+                        "operatorName": "NS",
+                        "operatorAdministrativeCode": 100,
+                        "type": "TRAIN",
+                        "displayName": "NS Intercity"
+                    },
+                    "messages": [],
+                    "stops": [
+                        {
+                            "uicCode": "8400071",
+                            "name": "Arnhem Centraal",
+                            "lat": 51.9850006103516,
+                            "lng": 5.89916658401489,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 0,
+                            "plannedDepartureDateTime": "2022-01-12T07:32:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T07:32:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "actualDepartureTrack": "11",
+                            "plannedDepartureTrack": "11",
+                            "plannedArrivalTrack": "11",
+                            "actualArrivalTrack": "11",
+                            "departureDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400200",
+                            "name": "Ede-Wageningen",
+                            "lat": 52.0277786254883,
+                            "lng": 5.67305564880371,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 3,
+                            "plannedDepartureDateTime": "2022-01-12T07:42:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T07:43:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T07:42:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T07:42:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "3",
+                            "plannedDepartureTrack": "3",
+                            "plannedArrivalTrack": "3",
+                            "actualArrivalTrack": "3",
+                            "departureDelayInSeconds": 60,
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400182",
+                            "name": "Driebergen-Zeist",
+                            "lat": 52.0652770996094,
+                            "lng": 5.25861120223999,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 6,
+                            "plannedDepartureDateTime": "2022-01-12T07:59:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T08:00:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T07:59:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T08:00:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "1",
+                            "plannedDepartureTrack": "1",
+                            "plannedArrivalTrack": "1",
+                            "actualArrivalTrack": "1",
+                            "departureDelayInSeconds": 60,
+                            "arrivalDelayInSeconds": 60,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400621",
+                            "name": "Utrecht Centraal",
+                            "lat": 52.0888900756836,
+                            "lng": 5.11027765274048,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 9,
+                            "plannedArrivalDateTime": "2022-01-12T08:07:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T08:07:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "5",
+                            "plannedDepartureTrack": "5",
+                            "plannedArrivalTrack": "5",
+                            "actualArrivalTrack": "5",
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        }
+                    ],
+                    "crowdForecast": "LOW",
+                    "punctuality": 90.9,
+                    "crossPlatformTransfer": false,
+                    "shorterStock": false,
+                    "journeyDetail": [
+                        {
+                            "type": "TRAIN_XML",
+                            "link": {
+                                "uri": "/api/v2/journey?id=HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#532879#TA#0#DA#120122#1S#1101149#1T#713#LS#1101022#LT#956#PU#784#RT#1#CA#IC#ZE#3020#ZB#IC 3020 #PC#1#FR#1101149#FT#713#TO#1101022#TT#956#&train=3020&datetime=2022-01-12T07:32:00+01:00"
+                            }
+                        }
+                    ],
+                    "reachable": true,
+                    "plannedDurationInMinutes": 35
+                },
+                {
+                    "idx": "1",
+                    "name": "IC 520",
+                    "travelType": "PUBLIC_TRANSIT",
+                    "direction": "Rotterdam Centraal",
+                    "cancelled": false,
+                    "changePossible": true,
+                    "alternativeTransport": false,
+                    "journeyDetailRef": "HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#4127#TA#0#DA#120122#1S#1100980#1T#606#LS#1100690#LT#855#PU#784#RT#1#CA#IC#ZE#520#ZB#IC 520  #PC#1#FR#1100980#FT#606#TO#1100690#TT#855#",
+                    "origin": {
+                        "name": "Utrecht Centraal",
+                        "lng": 5.11027765274048,
+                        "lat": 52.0888900756836,
+                        "countryCode": "NL",
+                        "uicCode": "8400621",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T08:18:00+0100",
+                        "actualTimeZoneOffset": 60,
+                        "actualDateTime": "2022-01-12T08:18:00+0100",
+                        "plannedTrack": "9",
+                        "actualTrack": "9",
+                        "checkinStatus": "NOTHING",
+                        "notes": []
+                    },
+                    "destination": {
+                        "name": "Rotterdam Centraal",
+                        "lng": 4.46888875961304,
+                        "lat": 51.9249992370605,
+                        "countryCode": "NL",
+                        "uicCode": "8400530",
+                        "type": "STATION",
+                        "plannedTimeZoneOffset": 60,
+                        "plannedDateTime": "2022-01-12T08:55:00+0100",
+                        "actualTimeZoneOffset": 60,
+                        "actualDateTime": "2022-01-12T08:55:00+0100",
+                        "plannedTrack": "14",
+                        "actualTrack": "14",
+                        "exitSide": "RIGHT",
+                        "checkinStatus": "CHECKOUT",
+                        "notes": []
+                    },
+                    "product": {
+                        "number": "520",
+                        "categoryCode": "IC",
+                        "shortCategoryName": "IC",
+                        "longCategoryName": "Intercity",
+                        "operatorCode": "ns",
+                        "operatorName": "NS",
+                        "operatorAdministrativeCode": 100,
+                        "type": "TRAIN",
+                        "displayName": "NS Intercity"
+                    },
+                    "messages": [],
+                    "stops": [
+                        {
+                            "uicCode": "8400621",
+                            "name": "Utrecht Centraal",
+                            "lat": 52.0888900756836,
+                            "lng": 5.11027765274048,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 0,
+                            "plannedDepartureDateTime": "2022-01-12T08:18:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T08:18:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "actualDepartureTrack": "9",
+                            "plannedDepartureTrack": "9",
+                            "plannedArrivalTrack": "9",
+                            "actualArrivalTrack": "9",
+                            "departureDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400258",
+                            "name": "Gouda",
+                            "lat": 52.0175018310547,
+                            "lng": 4.70444440841675,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 6,
+                            "plannedDepartureDateTime": "2022-01-12T08:37:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T08:37:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T08:36:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T08:36:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "8",
+                            "plannedDepartureTrack": "8",
+                            "plannedArrivalTrack": "8",
+                            "actualArrivalTrack": "8",
+                            "departureDelayInSeconds": 0,
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400507",
+                            "name": "Rotterdam Alexander",
+                            "lat": 51.9519462585449,
+                            "lng": 4.55361127853394,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 9,
+                            "plannedDepartureDateTime": "2022-01-12T08:46:00+0100",
+                            "plannedDepartureTimeZoneOffset": 60,
+                            "actualDepartureDateTime": "2022-01-12T08:46:00+0100",
+                            "actualDepartureTimeZoneOffset": 60,
+                            "plannedArrivalDateTime": "2022-01-12T08:46:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T08:46:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "2",
+                            "plannedDepartureTrack": "2",
+                            "plannedArrivalTrack": "2",
+                            "actualArrivalTrack": "2",
+                            "departureDelayInSeconds": 0,
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        },
+                        {
+                            "uicCode": "8400530",
+                            "name": "Rotterdam Centraal",
+                            "lat": 51.9249992370605,
+                            "lng": 4.46888875961304,
+                            "countryCode": "NL",
+                            "notes": [],
+                            "routeIdx": 11,
+                            "plannedArrivalDateTime": "2022-01-12T08:55:00+0100",
+                            "plannedArrivalTimeZoneOffset": 60,
+                            "actualArrivalDateTime": "2022-01-12T08:55:00+0100",
+                            "actualArrivalTimeZoneOffset": 60,
+                            "actualDepartureTrack": "14",
+                            "plannedDepartureTrack": "14",
+                            "plannedArrivalTrack": "14",
+                            "actualArrivalTrack": "14",
+                            "arrivalDelayInSeconds": 0,
+                            "cancelled": false,
+                            "borderStop": false,
+                            "passing": false
+                        }
+                    ],
+                    "crowdForecast": "LOW",
+                    "punctuality": 100.0,
+                    "shorterStock": false,
+                    "journeyDetail": [
+                        {
+                            "type": "TRAIN_XML",
+                            "link": {
+                                "uri": "/api/v2/journey?id=HARP_S2S-2|#VN#1#ST#1641541931#PI#0#ZI#4127#TA#0#DA#120122#1S#1100980#1T#606#LS#1100690#LT#855#PU#784#RT#1#CA#IC#ZE#520#ZB#IC 520  #PC#1#FR#1100980#FT#606#TO#1100690#TT#855#&train=520&datetime=2022-01-12T08:18:00+01:00"
+                            }
+                        }
+                    ],
+                    "reachable": true,
+                    "plannedDurationInMinutes": 37
+                }
+            ],
+            "crowdForecast": "LOW",
+            "punctuality": 90.9,
+            "optimal": false,
+            "fareRoute": {
+                "routeId": "=KBgRmSWFcQ==",
+                "origin": {
+                    "varCode": 71,
+                    "name": "Arnhem Centraal"
+                },
+                "destination": {
+                    "varCode": 530,
+                    "name": "Rotterdam Centraal"
+                }
+            },
+            "fares": [
+                {
+                    "priceInCents": 3474,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 2080,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 2779,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 1664,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 2084,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 1248,
+                    "product": "OVCHIPKAART_ENKELE_REIS",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 6948,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 4160,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 5558,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 3328,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_20_PERCENT"
+                },
+                {
+                    "priceInCents": 4168,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 2496,
+                    "product": "OVCHIPKAART_RETOUR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "DISCOUNT_40_PERCENT"
+                },
+                {
+                    "priceInCents": 73850,
+                    "product": "TRAJECT_VRIJ_MAAND",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 43700,
+                    "product": "TRAJECT_VRIJ_MAAND",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 61250,
+                    "product": "TRAJECT_VRIJ_JAAR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 36240,
+                    "product": "TRAJECT_VRIJ_JAAR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 734965,
+                    "product": "BUSINESS_CARD_TRAJECT_VRIJ_JAAR",
+                    "travelClass": "FIRST_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                },
+                {
+                    "priceInCents": 434910,
+                    "product": "BUSINESS_CARD_TRAJECT_VRIJ_JAAR",
+                    "travelClass": "SECOND_CLASS",
+                    "discountType": "NO_DISCOUNT"
+                }
+            ],
+            "fareLegs": [
+                {
+                    "origin": {
+                        "name": "Arnhem Centraal",
+                        "lng": 5.89916658401489,
+                        "lat": 51.9850006103516,
+                        "countryCode": "NL",
+                        "uicCode": "8400071",
+                        "type": "STATION"
+                    },
+                    "destination": {
+                        "name": "Rotterdam Centraal",
+                        "lng": 4.46888875961304,
+                        "lat": 51.9249992370605,
+                        "countryCode": "NL",
+                        "uicCode": "8400530",
+                        "type": "STATION"
+                    },
+                    "operator": "NS",
+                    "productTypes": [
+                        "TRAIN"
+                    ],
+                    "fares": [
+                        {
+                            "priceInCents": 2080,
+                            "priceInCentsExcludingSupplement": 2080,
+                            "supplementInCents": 0,
+                            "buyableTicketSupplementPriceInCents": 0,
+                            "product": "OVCHIPKAART_ENKELE_REIS",
+                            "travelClass": "SECOND_CLASS",
+                            "discountType": "NO_DISCOUNT"
+                        }
+                    ]
+                }
+            ],
+            "productFare": {
+                "priceInCents": 2080,
+                "priceInCentsExcludingSupplement": 2080,
+                "buyableTicketPriceInCents": 2080,
+                "buyableTicketPriceInCentsExcludingSupplement": 2080,
+                "product": "OVCHIPKAART_ENKELE_REIS",
+                "travelClass": "SECOND_CLASS",
+                "discountType": "NO_DISCOUNT"
+            },
+            "fareOptions": {
+                "isInternationalBookable": false,
+                "isInternational": false,
+                "isEticketBuyable": true,
+                "isPossibleWithOvChipkaart": true,
+                "isTotalPriceUnknown": false
+            },
+            "type": "NS",
+            "shareUrl": {
+                "uri": "https://www.ns.nl/rpx?ctx=arnu%7CfromStation%3D8400071%7CtoStation%3D8400530%7CplannedFromTime%3D2022-01-12T07%3A32%3A00%2B01%3A00%7CplannedArrivalTime%3D2022-01-12T08%3A55%3A00%2B01%3A00%7CyearCard%3Dfalse%7CexcludeHighSpeedTrains%3Dfalse%7CsearchForAccessibleTrip%3Dfalse%7CaddChangeTime%3D0"
+            },
+            "realtime": true,
+            "routeId": "=KBgRmSWFcQ==",
+            "registerJourney": {
+                "searchUrl": "https://treinwijzer.ns.nl/idp/login?search=true&originUicCode=8400071&destinationUicCode=8400530&dateTime=2022-01-12T07%3A50%3A00%2B01%3A00&searchForArrival=false&excludeHighSpeedTrains=false&localTrainsOnly=false&yearCard=false&addChangeTime=0&searchForAccessibleTrip=false&lang=nl&travelAssistance=false&travelAssistanceTransferTime=0",
+                "status": "DATE_IN_PAST",
+                "bicycleReservationRequired": false,
+                "availability": {
+                    "seats": false,
+                    "bicycle": false
+                }
+            }
+        }
+    ],
+    "scrollRequestBackwardContext": "2|OB|MTµ11µ154502µ154502µ154585µ154585µ0µ0µ324µ154599µ-3µ10µ154540µ1µ1|PDHµ3b69f1ba16c3bae936573575d10f33f0|RDµ12012022|RTµ74000|USµ0",
+    "scrollRequestForwardContext": "2|OF|MTµ11µ154532µ154532µ154615µ154615µ0µ0µ4µ154791µ-1µ10µ154540µ1µ1|PDHµ3b69f1ba16c3bae936573575d10f33f0|RDµ12012022|RTµ74000|USµ0"
+}

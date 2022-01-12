@@ -13,6 +13,7 @@ const {
 } = require('./interpreters.js');
 const writeJSON = require('./writeJSON.js');
 const reisStats = require('./reisStats.js');
+const voegNsAntwoordenSamen = require('./voegNsAntwoordenSamen.js');
 
 const berekenWachttijden = (reis) => {
     for (const station of reis) {
@@ -91,7 +92,7 @@ const planReis = async (reisplan) => {
         .sort((a, b) => a.index - b.index)
         .map(trip => trip.trip);
 
-    return reisStats(trips);
+    return trips;
 };
 
 module.exports = planReis;

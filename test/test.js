@@ -3,6 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const readJSON = require('../functies/readJSON');
+const reisStats = require('../functies/reisStats');
+const writeJSON = require('../functies/writeJSON');
 
 const {
     formatteerReis,
@@ -16,7 +18,9 @@ const {
     const rawRoute = (await fs.promises.readFile(path.join(process.cwd(), process.argv[2]))).toString();
     if (!rawRoute) return console.log("Bestand niet gevonden.");
     const reisplan = multiReis(rawRoute);
-    const reis = await planReis(reisplan);
-    const reisScriptNederlands = formatteerReis(reis);
+    const nsAntwoorden = await planReis(reisplan);
+    const stats = reisStats(nsAntwoorden);
+    await writeJSON(reis, "resultaat");
+    const reisScriptNederlands = formatteerReis(stats);
     console.log(reisScriptNederlands);
 })();
