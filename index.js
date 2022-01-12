@@ -13,6 +13,8 @@ const multiReis = require('./functies/multiReis.js');
 const formatteerReis = require('./functies/formatteerReis.js');
 const updateMultiplanner = require('./functies/updateMultiplanner.js');
 const formatteerTreinen = require('./functies/formatteerTreinen.js');
+const reisStats = require('./functies/reisStats');
+const voegNsAntwoordenSamen = require('./functies/voegNsAntwoordenSamen');
 const { stationAankomsten, stationVertrekken } = require('./functies/stationTreinen');
 
 //Export all of the modules
@@ -23,5 +25,7 @@ module.exports = {
     updateMultiplanner,
     formatteerTreinen,
     stationAankomsten,
-    stationVertrekken
+    stationVertrekken,
+    reisStats,
+    voegNsAntwoordenSamen
 };

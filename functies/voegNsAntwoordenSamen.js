@@ -1,11 +1,3 @@
-const polylineAfstand = require('./polylineAfstand.js');
-const stationsLijstPolyline = require('./stationsLijstPolyline.js');
-const coordinaatAfstand = require('./coordinaatAfstand.js');
-const {
-    extractLeg
-} = require('./interpreters.js');
-const writeJSON = require('./writeJSON.js');
-
 const voegNsAntwoordenSamen = (trips) => {
     trips
         .slice(1)

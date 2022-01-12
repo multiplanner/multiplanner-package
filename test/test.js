@@ -3,13 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 const readJSON = require('../functies/readJSON');
-const reisStats = require('../functies/reisStats');
 const writeJSON = require('../functies/writeJSON');
 
 const {
     formatteerReis,
     multiReis,
-    planReis
+    planReis,
+    reisStats
  } = require('../index.js');
 
 (async () => {
@@ -20,7 +20,7 @@ const {
     const reisplan = multiReis(rawRoute);
     const nsAntwoorden = await planReis(reisplan);
     const stats = reisStats(nsAntwoorden);
-    await writeJSON(reis, "resultaat");
+    await writeJSON(stats, "resultaat");
     const reisScriptNederlands = formatteerReis(stats);
     console.log(reisScriptNederlands);
 })();
