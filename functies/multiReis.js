@@ -1,11 +1,11 @@
-const chrono = require('chrono-node');
+import chrono from "chrono-node";
 
-const invertedSwitch = require('./invertedSwitch.js');
-const {
+import invertedSwitch from "./invertedSwitch.js"
+import {
     bestaat,
     parseDatumRelatief,
     losseregels
-} = require('./parsers.js');
+} from "./parsers.js";
 
 const reisScriptNaarRequest = (reisScript) => {
     const regels = losseregels(reisScript);
@@ -49,4 +49,4 @@ const reisScriptNaarRequest = (reisScript) => {
     };
 };
 
-module.exports = reisScriptNaarRequest;
+export default reisScriptNaarRequest;

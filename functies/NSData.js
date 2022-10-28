@@ -1,6 +1,6 @@
-const doeRequest = require("./doeRequest");
+import doeRequest from "./doeRequest.js"
 
-module.exports = config => {
+export default config => {
     const apikey = config.apikey;
 
     return async (pad) => await doeRequest({

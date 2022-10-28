@@ -7,4 +7,4 @@ const invertedSwitch = (switches, waarde) => {
     }
 };
 
-module.exports = invertedSwitch;
+export default invertedSwitch;

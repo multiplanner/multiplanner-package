@@ -1,8 +1,8 @@
-const {
+import {
     haalAankomstenOp,
     haalVertrekkenOp
-} = require('./haalTreinenOp');
-const zoekStation = require('./zoekStation');
+} from "./haalTreinenOp.js";
+import zoekStation from "./zoekStation.js"
 
 const sortDatum = (a, b) => a.tijd - b.tijd;
 
@@ -29,7 +29,7 @@ const stationVertrekken = async (station) => {
     return vertrekken.sort(sortDatum);
 }
 
-module.exports = {
+export {
     stationAankomsten,
     stationVertrekken
 };

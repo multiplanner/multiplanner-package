@@ -1,10 +1,10 @@
-const polylineAfstand = require('./polylineAfstand.js');
-const stationsLijstPolyline = require('./stationsLijstPolyline.js');
-const coordinaatAfstand = require('./coordinaatAfstand.js');
-const {
+import polylineAfstand from "./polylineAfstand.js"
+import stationsLijstPolyline from "./stationsLijstPolyline.js"
+import coordinaatAfstand from "./coordinaatAfstand.js"
+import {
     extractLeg
-} = require('./interpreters.js');
-const writeJSON = require('./writeJSON.js');
+} from "./interpreters.js";
+import writeJSON from "./writeJSON.js"
 
 const reisStats = (trips) => {
     const legs = [];
@@ -51,4 +51,4 @@ const reisStats = (trips) => {
     };
 };
 
-module.exports = reisStats;
+export default reisStats;

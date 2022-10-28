@@ -1,7 +1,7 @@
-const writeJSON = require("./writeJSON.js");
-const haalDataOp = require('./haalDataOp.js');
+import writeJSON from "./writeJSON.js"
+import haalDataOp from "./haalDataOp.js"
 
-module.exports = async (nsapi) => {
+export default async (nsapi) => {
     const spoorkaart = await haalDataOp('/Spoorkaart-API/api/v1/spoorkaart/', nsapi);
     const stations = await haalDataOp('/reisinformatie-api/api/v2/stations', nsapi);
     const config = {

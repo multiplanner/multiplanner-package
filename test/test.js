@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-const fs = import ('fs');
-const path = import('path');
-const readJSON = import('../functies/readJSON');
-import writeJSON from '../functies/writeJSON';
+import fs from 'fs';
+import path from 'path';
+import readJSON from '../functies/readJSON.js';
+import writeJSON from '../functies/writeJSON.js';
 
-const {
+import {
     formatteerReis,
     multiReis,
     planReis,
     reisStats
- } = import('../index.js');
+ } from '../index.js';
 
 (async () => {
     const file = process.argv[2];

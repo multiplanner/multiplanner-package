@@ -1,6 +1,6 @@
-const readJSONSync = require('./readJSONSync.js');
-const stations = [].concat(...readJSONSync("stations").map((station) => station.namen));
-const stringSimilarity = require("string-similarity");
-const vindStation = require('./vindStation.js');
+import readJSON from "./readJSON.js"
+const stations = [].concat(...(await readJSON("stations")).map((station) => station.namen));
+import stringSimilarity from "string-similarity";
+import vindStation from "./vindStation.js"
 
-module.exports = (stationsNaam) => vindStation(stringSimilarity.findBestMatch(stationsNaam, stations).bestMatch.target);
+export default (stationsNaam) => vindStation(stringSimilarity.findBestMatch(stationsNaam, stations).bestMatch.target);

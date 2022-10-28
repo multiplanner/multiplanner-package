@@ -1,6 +1,6 @@
-const https = require('https');
+import https from "https";
 
-module.exports = opties => {
+export default opties => {
     let antwoord = '';
     return new Promise((resolve, error) => {
         const request = https.request(opties, (response) => {

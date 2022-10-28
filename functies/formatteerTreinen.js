@@ -1,6 +1,6 @@
-const {
+import {
     formatteerTijd, maakTabel, maakStringLengte
-} = require('./formatters');
+} from "./formatters.js";
 
 const formatteerTreinen = (treinen, vertrekken = !treinen[0].oorsprong) => maakTabel([
     ["Tijd", "Spoor", "Type", vertrekken ? "Richting" : "Oorsprong", "Bijzonderheden"],
@@ -15,4 +15,4 @@ const formatteerTreinen = (treinen, vertrekken = !treinen[0].oorsprong) => maakT
         ])
 ]);
 
-module.exports = formatteerTreinen;
+export default formatteerTreinen;

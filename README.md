@@ -12,9 +12,9 @@ npm install multiplanner
 Voor het eerste gebruik deze library initialiseren met een api key zoals volgt:
 
 ```javascript
-const {
+import {
     updateMultiplanner
-} = require('multiplanner');
+} from "./multiplanner.js";
 
 updateMultiplanner(NS_API_KEY_HIER);
 ```
@@ -25,10 +25,10 @@ Behalve de `updateMultiplanner` functie stelt deze library ook de multiReis en f
 
 ```javascript
 // Importeer functies
-const {
+import {
     multiReis,
     formatteerReis
-} = require('multiplanner');
+} from "./multiplanner.js";
 
 // Beschrijf de te plannen route
 const route = `

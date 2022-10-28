@@ -1,3 +1,3 @@
-const haalDataOp = require('./haalDataOp.js');
+import haalDataOp from "./haalDataOp.js"
 
-module.exports = async (beginStation, eindStation, aankomstTijd) => await haalDataOp(`/reisinformatie-api/api/v3/trips?fromStation=${beginStation}&toStation=${eindStation}&dateTime=${aankomstTijd}&yearCard=true`);
+export default async (beginStation, eindStation, aankomstTijd) => await haalDataOp(`/reisinformatie-api/api/v3/trips?fromStation=${beginStation}&toStation=${eindStation}&dateTime=${aankomstTijd}&yearCard=true`);

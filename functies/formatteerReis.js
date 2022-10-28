@@ -1,12 +1,12 @@
-const {
+import {
     maakTabel,
     formateerTijdsduurMinuten,
     formatteerTijd,
     vertaalZijde,
     formatteerDatum
-} = require("./formatters.js");
+} from "./formatters.js";
 
-module.exports = (reis) => {
+export default (reis) => {
     const infoTabel = maakTabel([
         ["Prijs", `€${(reis.prijs / 100).toFixed(2)}`],
         ["Vertrekdatum", formatteerDatum(reis.reis[0].vertrektijd)],

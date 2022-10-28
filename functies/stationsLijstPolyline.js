@@ -1,7 +1,7 @@
-const vindStation = require('./vindStation.js');
-const haalPolylineOp = require("./haalPolylineOp.js");
+import vindStation from "./vindStation.js"
+import haalPolylineOp from "./haalPolylineOp.js"
 
-module.exports = (stations) => {
+export default (stations) => {
     const polyline = [];
 
     const volledigestations = stations.map(vindStation);

@@ -8,17 +8,17 @@
  *  Main index file
  */
 
-const planReis = require('./functies/planReis.js');
-const multiReis = require('./functies/multiReis.js');
-const formatteerReis = require('./functies/formatteerReis.js');
-const updateMultiplanner = require('./functies/updateMultiplanner.js');
-const formatteerTreinen = require('./functies/formatteerTreinen.js');
-const reisStats = require('./functies/reisStats');
-const voegNsAntwoordenSamen = require('./functies/voegNsAntwoordenSamen');
-const { stationAankomsten, stationVertrekken } = require('./functies/stationTreinen');
+import planReis from './functies/planReis.js'
+import multiReis from './functies/multiReis.js'
+import formatteerReis from './functies/formatteerReis.js'
+import updateMultiplanner from './functies/updateMultiplanner.js'
+import formatteerTreinen from './functies/formatteerTreinen.js'
+import reisStats from './functies/reisStats.js'
+import voegNsAntwoordenSamen from './functies/voegNsAntwoordenSamen.js'
+import { stationAankomsten, stationVertrekken } from './functies/stationTreinen.js';
 
 //Export all of the modules
-module.exports = {
+export {
     planReis,
     multiReis,
     formatteerReis,

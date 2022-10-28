@@ -9,7 +9,7 @@ const vertaalZijde = (zijde) => ({
     RIGHT: "Rechts"
 })[zijde] || "Onbekend";
 
-module.exports = {
+export {
     maakTabel,
     formateerTijdsduurMinuten,
     formatteerTijd,

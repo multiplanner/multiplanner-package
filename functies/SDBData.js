@@ -1,10 +1,10 @@
-const { createHmac } = require('crypto');
-const { DateTime } = require("luxon");
-const doeRequest = require("./doeRequest");
+import { createHmac } from "./crypto.js";import { createHmac } from "./crypto.js"
+import { DateTime } from "luxon";
+import doeRequest from "./doeRequest.js"
 
 
 
-module.exports = (config) => {
+export default (config) => {
     const sdbkey = config.SDB.key;
     const sdbklantnummer = config.SDB.klantnummer;
     const sdbapiuser = config.SDB.user;

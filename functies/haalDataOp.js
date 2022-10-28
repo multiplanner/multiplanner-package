@@ -1,7 +1,7 @@
-const https = require('https');
+import https from "https";
 
-const readJSONSync = require('./readJSONSync.js');
-const config = readJSONSync("config");
+import readJSON from "./readJSON.js"
+const config = await readJSON("config");
 
 const doeRequest = (opties) => {
     let antwoord = '';
@@ -22,7 +22,7 @@ const doeRequest = (opties) => {
     );
 };
 
-module.exports = async (pad, apikey = config.ns_app_key_primary) => await doeRequest({
+export default async (pad, apikey = config.ns_app_key_primary) => await doeRequest({
     host: 'gateway.apiportal.ns.nl',
     path: pad,
     headers: {

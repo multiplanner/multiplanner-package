@@ -27,4 +27,4 @@ const voegNsAntwoordenSamen = (trips) => {
     };
 };
 
-module.exports = voegNsAntwoordenSamen;
+export default voegNsAntwoordenSamen;

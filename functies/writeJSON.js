@@ -1,4 +1,4 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import opslagPad from "./opslagPad.js";
 
-module.exports = async (input, locatie) => await fs.promises.writeFile(path.join(__dirname, "..", "opslag", locatie + ".json"), JSON.stringify(input));
+export default async (input, locatie) => await fs.promises.writeFile(opslagPad(locatie), JSON.stringify(input));

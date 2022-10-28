@@ -1,19 +1,19 @@
-const vroegsteVolledigeReis = require('./vroegsteVolledigeReis.js');
-const laatsteVolledigeReis = require('./laatsteVolledigeReis.js');
-const polylineAfstand = require('./polylineAfstand.js');
-const stationsLijstPolyline = require('./stationsLijstPolyline.js');
-const coordinaatAfstand = require('./coordinaatAfstand.js');
-const zoekStation = require('./zoekStation.js');
-const vindStation = require('./vindStation.js');
-const {
+import vroegsteVolledigeReis from "./vroegsteVolledigeReis.js"
+import laatsteVolledigeReis from "./laatsteVolledigeReis.js"
+import polylineAfstand from "./polylineAfstand.js"
+import stationsLijstPolyline from "./stationsLijstPolyline.js"
+import coordinaatAfstand from "./coordinaatAfstand.js"
+import zoekStation from "./zoekStation.js"
+import vindStation from "./vindStation.js"
+import {
     aankomstTijd,
     vertrekTijd,
     aankomstTrein,
     vertrekTrein
-} = require('./interpreters.js');
-const writeJSON = require('./writeJSON.js');
-const reisStats = require('./reisStats.js');
-const voegNsAntwoordenSamen = require('./voegNsAntwoordenSamen.js');
+} from "./interpreters.js";
+import writeJSON from "./writeJSON.js"
+import reisStats from "./reisStats.js"
+import voegNsAntwoordenSamen from "./voegNsAntwoordenSamen.js"
 
 const berekenWachttijden = (reis) => {
     for (const station of reis) {
@@ -95,4 +95,4 @@ const planReis = async (reisplan) => {
     return trips;
 };
 
-module.exports = planReis;
+export default planReis;

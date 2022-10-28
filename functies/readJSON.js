@@ -1,6 +1,4 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import opslagPad from "./opslagPad.js";
 
-module.exports = async (locatie) => JSON.parse(
-    await fs.promises.readFile(path.join(__dirname, "..", "opslag", locatie + ".json"))
-);
+export default async (locatie) => JSON.parse(await fs.promises.readFile(opslagPad(locatie)));
