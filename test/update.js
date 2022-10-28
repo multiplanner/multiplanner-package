@@ -1,5 +1,5 @@
-const {
+import {
     updateMultiplanner
-} = require("../index.js");
+} from "../index.js";
 
 updateMultiplanner(process.argv[2]);

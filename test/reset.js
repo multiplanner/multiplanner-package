@@ -1,4 +1,4 @@
-const writeJSON = require('../functies/writeJSON');
+import writeJSON from '../functies/writeJSON.js';
 
 (async () => {
     await writeJSON({}, "spoorkaart");

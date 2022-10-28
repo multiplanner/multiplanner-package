@@ -1,4 +1,4 @@
 import readJSON from "./readJSON.js"
-const stations = await readJSON("stations");
+import stations from "./stations.js"
 
 export default (stationsNaam) => stations.find((kandidaatStation) => kandidaatStation.namen.includes(stationsNaam));

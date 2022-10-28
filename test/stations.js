@@ -1,8 +1,8 @@
-const {
+import {
     formatteerTreinen,
     stationAankomsten,
     stationVertrekken
-} = require('../index');
+} from '../index.js';
 
 (async () => {
     const aankomsten = await stationAankomsten(process.argv[2]);
