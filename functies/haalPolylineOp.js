@@ -1,7 +1,7 @@
-const readJSONSync = require('./readJSONSync.js');
-const spoorkaart = readJSONSync("spoorkaart");
+const readJSON = require('./readJSON.js');
+const spoorkaart = await readJSON("spoorkaart");
 
-module.exports = (stationa, stationb) => {
+module.exports = spoorkaart => (stationa, stationb) => {
     const rechtefeature = spoorkaart.payload.features.find((feature) => feature.properties.from == stationa.code && feature.properties.to == stationb.code);
     if (rechtefeature) return rechtefeature.geometry.coordinates;
     const omgekeerdefeature = spoorkaart.payload.features.find((feature) => feature.properties.to == stationa.code && feature.properties.from == stationb.code);

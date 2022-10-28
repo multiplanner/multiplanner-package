@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "multiplanner",
   "version": "5.0.2",
   "description": "Tool om polydestinale reizen te plannen over het Nederlandse spoornet.",
