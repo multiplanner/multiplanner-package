@@ -1,6 +1,6 @@
 import doeRequest from "./doeRequest.js"
 import readJSON from "./readJSON.js";
-const config = await readJSON("config");
+import config from "./config.js";
 
 export default async (pad) => JSON.parse(await doeRequest({
     host: 'gateway.apiportal.ns.nl',

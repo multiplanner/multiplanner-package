@@ -1,4 +1,3 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import projectroot from "./projectroot.js";
 
-export default (locatie) => `${dirname(fileURLToPath(import.meta.url))}/../opslag/${locatie}.json`;
+export default (locatie) => `${projectroot}/opslag/${locatie}.json`;

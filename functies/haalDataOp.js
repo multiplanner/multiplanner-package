@@ -1,7 +1,6 @@
 import https from "https";
 
-import readJSON from "./readJSON.js"
-const config = await readJSON("config");
+import config from "./config.js";
 
 const doeRequest = (opties) => {
     let antwoord = '';
