@@ -1,0 +1,184 @@
+[
+    {
+        "naam": "vraag",
+        "attributen": {
+            "vraagtekst": "String",
+            "antwoordtekst": "String"
+        },
+        "crud": "true"
+    },
+    {
+        "naam": "lokaal",
+        "attributen": {
+            "lokaalnummer": "String"
+        },
+        "private": [
+            "vindLokaal(lokaalnummer: int): Lokaal",
+            "vindLokaal(vanDocent: Docent): Lokaal",
+            "getWillekeurigLokaal(): Lokaal",
+            "vindKennistoets(kennistoetsNummer: int): Kennistoets"
+        ],
+        "public": [
+            "startToets(kennistoetsNummer: int): void",
+            "startToets(kennistoetsNummer: int, lokaalNummer: int): void",
+            "zieResultaatIn(kennistoetsNummer: int, sessieNummer: int): Sessie",
+            "neemDeelAanToets(studentnaam: String): ArrayList<Vraag>",
+            "bindAanSessie(sessie: Sessie): void"
+        ],
+        "crud": "true"
+    },
+    {
+        "naam": "sessie",
+        "attributen": {
+            "kennistoets": "Kennistoets",
+            "lokaal": "Lokaal"
+        },
+        "public": [
+            "neemDeelAanToets(studentnaam: String): ArrayList<Vraag>",
+            "zieResultaatIn(): Sessie"
+        ]
+    },
+    {
+        "naam": "basisDocent",
+        "public": "startToets(kennistoetsNummer: int): void",
+        "supertype": "docent"
+    },
+    {
+        "naam": "docent",
+        "attributen": {
+            "emailadres": "String",
+            "voornaam": "String",
+            "achternaam": "String",
+            "wachtwoord": "String"
+        },
+        "public": "zieResultaatIn(kennistoetsNummer: int, sessieNummer: int): Sessie",
+        "abstract": "amongu",
+        "crud": "true"
+    },
+    {
+        "naam": "organisatie",
+        "attributen": {
+            "naam": "String"
+        }
+    },
+    {
+        "naam": "premiumDocent",
+        "attributen": {
+            "geldigheidsduur": "Date"
+        },
+        "public": "startToets(kennistoetsNummer: int, lokaalNummer: int): void",
+        "supertype": "docent"
+    },
+    {
+        "naam": "kennistoets",
+        "attributen": {
+            "tijdsduur": "int"
+        },
+        "private": "vindSessie(sessieNummer: int): Sessie",
+        "public": [
+            "startKennistoets(lokaal: Lokaal): void",
+            "getVragen(): ArrayList<Vraag>",
+            "zieResultaatIn(sessieNummer: int): Sessie"
+        ],
+        "crud": "true"
+    },
+    {
+        "naam": "student",
+        "attributen": {
+            "studentnaam": "String"
+        },
+        "crud": "true"
+    },
+    {
+        "naam": "deelname",
+        "attributen": {
+            "score": "int",
+            "bonus": "int",
+            "tijdsduur": "int",
+            "totaalscore": "int",
+            "begintijd": "long"
+        },
+        "private": [
+            "startTimer(): void",
+            "stopTimer(): void",
+            "kijkNa(): int"
+        ],
+        "public": [
+            "Deelname(sessie: Sessie, kennistoets: Kennistoets)",
+            "neemDeelAanToets(studentnaam: String): ArrayList<Vraag>",
+            "leverToetsIn(antwoorden: ArrayList<Antwoord>): ScoreTijdsduur",
+            "getScore(): Score",
+            "getNaam(): String"
+        ]
+    },
+    {
+        "naam": "vraag",
+        "attributen": {
+            "vraagtekst": "String",
+            "weging": "int"
+        },
+        "public": "{abstract} getScore(antwoordtekst: String): int",
+        "crud": "true"
+    },
+    {
+        "naam": "openVraag",
+        "supertype": "vraag"
+    },
+    {
+        "naam": "meerkeuzeVraag",
+        "supertype": "vraag"
+    },
+    {
+        "naam": "antwoord",
+        "abstract": "amongu",
+        "attributen": {
+            "antwoordTekst": "String"
+        },
+        "public": "gegevenIsCorrect(antwoordtekst: String): boolean"
+    },
+    {
+        "naam": "gegevenAntwoord",
+        "abstract": "amongu",
+        "attributen": {
+            "antwoordTekst": "String"
+        },
+        "public": "getScore(andwoordtekst: String): int"
+    },
+    {
+        "naam": "gegevenSleutelwoord",
+        "supertype": "gegevenAntwoord"
+    },
+    {
+        "naam": "gegevenMeerkeuzeAntwoord",
+        "supertype": "gegevenAntwoord"
+    },
+    {
+        "naam": "sleutelwoord",
+        "supertype": "antwoord"
+    },
+    {
+        "naam": "meerkeuzeAntwoord",
+        "supertype": "antwoord"
+    },
+    {
+        "naam": "score",
+        "attributen": {
+            "score": "int",
+            "bonus": "int",
+            "/totaalscore": "int"
+        }
+    },
+    {
+        "naam": "scoreTijdsduur",
+        "supertype": "score",
+        "attributen": {
+            "tijdsduur": "int"
+        }
+    },
+    {
+        "naam": "item",
+        "attributen": {
+            "attributen": "String"
+        }
+    }
+]

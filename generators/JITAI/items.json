@@ -1,0 +1,106 @@
+[
+    {
+        "naam": "user",
+        "attributen": [
+            {
+                "naam": "username",
+                "type": "String",
+                "sqltype": "VARCHAR(255)",
+                "nullable": "NOT NULL"
+            },
+            {
+                "naam": "password",
+                "type": "String",
+                "sqltype": "VARCHAR(255)",
+                "nullable": "NOT NULL"
+            },
+            {
+                "naam": "email",
+                "type": "String",
+                "sqltype": "VARCHAR(255)",
+                "nullable": "NOT NULL"
+            }
+        ],
+        "enkelvoudig": [
+            "role",
+            "goal"
+        ]
+    },
+    {
+        "naam": "geofence",
+        "attributen": [
+            {
+                "naam": "longitude"
+            },
+            {
+                "naam": "latitude"
+            },
+            {
+                "naam": "radius"
+            }
+        ]
+    },
+    {
+        "naam": "location",
+        "supertype": "geofence",
+        "attributen": [
+            {
+                "naam": "name",
+                "type": "String",
+                "sqltype": "varchar(255)",
+                "nullable": "NOT NULL"
+            },
+            {
+                "naam": "delay",
+                "type": "int",
+                "sqltype": "int(6)",
+                "nullable": "NOT NULL"
+            }
+        ],
+        "superattributen": [
+            {
+                "naam": "longitude",
+                "type": "float",
+                "sqltype": "DOUBLE",
+                "nullable": "NOT NULL",
+                "min": "-180",
+                "max": "180"
+            },
+            {
+                "naam": "latitude",
+                "type": "float",
+                "sqltype": "DOUBLE",
+                "nullable": "NOT NULL",
+                "min": "-90",
+                "max": "90"
+            },
+            {
+                "naam": "radius",
+                "type": "int",
+                "sqltype": "INT(6)",
+                "nullable": "NOT NULL"
+            }
+        ],
+        "enkelvoudig": [
+            "area",
+            "franchise"
+        ],
+        "meervoudig": [
+            "intervention"
+        ]
+    },
+    {
+        "naam": "role",
+        "attributen": [
+            {
+                "naam": "name",
+                "type": "String",
+                "sqltype": "VARCHAR(255)",
+                "nullable": "NOT NULL"
+            }
+        ],
+        "meervoudig": [
+            "permission"
+        ]
+    }
+]

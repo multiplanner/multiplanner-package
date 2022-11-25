@@ -1,0 +1,32 @@
+[
+    {
+        "naam": "geofence",
+        "het": "de",
+        "attributen": [
+            "longitude",
+            "latitude",
+            "radius"
+        ]
+    },
+    {
+        "naam": "area",
+        "het": "de",
+        "supertype": "geofence"
+    },
+    {
+        "naam": "location",
+        "supertype": "geofence",
+        "het": "de",
+        "attributen": [
+            "name",
+            "delay"
+        ],
+        "enkelvoudig": [
+            "area",
+            "franchise"
+        ],
+        "meervoudig": [
+            "intervention"
+        ]
+    }
+]
