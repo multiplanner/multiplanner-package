@@ -11,4 +11,6 @@ const routeNaarTekstPlan = async (rawRoute) => {
     const stats = reisStats(nsAntwoorden);
     const reisScriptNederlands = formatteerReis(stats);
     return reisScriptNederlands;
-}
+};
+
+export default routeNaarTekstPlan;

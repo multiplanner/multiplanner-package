@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 
-const stdin = new Promise(async (resolve, reject) => {
+const stdin = await new Promise(async (resolve, reject) => {
 
     const file = process.argv[2];
     if (file) {
@@ -23,7 +23,5 @@ const stdin = new Promise(async (resolve, reject) => {
         resolve(data);
     });
 });
-
-console.log(await stdin);
 
 export default stdin;
