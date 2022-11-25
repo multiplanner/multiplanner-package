@@ -1,6 +1,6 @@
 
 
-January 3, 2022
+December 3, 2022
 
 
 06:00 Susteren          
@@ -13,9 +13,7 @@ Winterswijk
 30 Zevenaar       
 Arnhem            
 ? Ede-wageningen  
-Utrecht 30        
-'t harde          
-Zwolle            
-23:00 Deventer   
+Utrecht 30          
+21:00 Deventer   
 
 
