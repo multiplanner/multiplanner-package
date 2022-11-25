@@ -1,3 +1,3 @@
-const vds = c => (...a) => c(vds(c))(...a);
+const vds = z => (...args) => z(vds(z))(...args);
 
 export default vds;
