@@ -1,0 +1,29 @@
+.button-enabled {
+    background-color: var(--wur-groen);
+}
+
+button {
+    padding:  0.4rem 1.5rem;
+    transition: 0.4s;
+    color: var(--wur-wit);
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-disabled {
+    background-color: var(--wur-grijs);
+    cursor: default;
+}
+
+.button-normal {
+    height: 40px;
+}
+
+.button-large {
+    height: 50px;
+}
+
+.button-enabled:hover {
+    background-color: var(--wur-button-hover);
+}

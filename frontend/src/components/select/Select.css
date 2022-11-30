@@ -1,0 +1,23 @@
+.select {
+    border: none;
+    margin: 3px 0;
+    color: var(--wur-zwart);
+    background-color: var(--wur-licht-grijs);
+    font-size: 18px;
+    display: block;
+    height: 52px;
+    padding: 12px 20px;
+}
+
+.select-label {
+    margin: 0;
+}
+
+.select-normal {
+    width: 290px;
+}
+
+
+.select-large {
+    width: 100%;
+}

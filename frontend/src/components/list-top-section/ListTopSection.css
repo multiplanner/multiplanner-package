@@ -1,0 +1,22 @@
+.top-section-component {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.top-section-component-right {
+    display: flex;
+    column-gap: 2rem;
+    flex-grow: 2;
+    margin-left: 2rem;
+    align-items: center;
+}
+
+.top-section-component-right:first-child {
+    flex-shrink: 2;   
+}
+
+.top-section-component-right:last-child {
+    flex-shrink: 1;   
+}

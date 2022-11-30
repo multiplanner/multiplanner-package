@@ -1,0 +1,25 @@
+.add-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.fields-row {
+    display: flex;
+    column-gap: 10%;
+}
+
+.add-button {
+    margin-bottom: 3px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+.interventions .submit-button {
+    margin-left: 5%;
+}
+.interventions form {
+    margin-bottom: 5%;
+}

@@ -1,0 +1,10 @@
+.detail-top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-top-section-margin {
+    padding: 0;
+    margin: 0;
+}

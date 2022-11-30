@@ -1,0 +1,14 @@
+.location-detail-table {
+    margin-top: 50px;
+}
+
+.table-min-width {
+    min-width: 200px;
+}
+.interventions > h4 {
+    margin-bottom: 4px;
+}
+.interventions > p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
