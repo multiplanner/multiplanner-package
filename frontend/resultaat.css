@@ -1,0 +1,15 @@
+.bewijslink {
+    color: #FFC917;
+}
+
+.bewijslink:hover {
+    color: #c59700;
+}
+
+tr {
+    white-space: nowrap;
+}
+
+#google-map-reis {
+    width: 100%;
+}

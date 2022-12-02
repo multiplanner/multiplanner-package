@@ -1,0 +1,10 @@
+.route-container{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+}
+
+textarea {
+   min-height: 90px;
+}
