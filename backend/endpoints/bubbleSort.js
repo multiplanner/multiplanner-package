@@ -1,6 +1,6 @@
-import swap from "./swap.js";
+import swap from "../functies/swap.js";
 
-const bubbleSort = (array) => {
+const bubbleSort = (...array) => {
     let sorted;
 
     do {

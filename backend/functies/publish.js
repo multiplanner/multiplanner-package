@@ -19,7 +19,7 @@ const publish = (port, map = "endpoints") => {
     https
         .createServer(options, async (req, res) => {
             const end = getEnd(res);
-            const [filename, ...parts] = url.parse(req.url).pathname.slice(1).split("/");
+            const [filename, ...parts] = url.parse(req.url).pathname.slice(1).split("/").map(v => YAML.parse(v));
             const filepath = path.join(projectroot, map, `${filename}.js`);            
             if (!await fs.access(filepath).then(() => true).catch(() => false)) return end(404, "Endpoint bestaat niet");
             const app = await import(filepath);
